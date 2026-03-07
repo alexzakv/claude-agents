@@ -91,7 +91,7 @@ Each role has a clear mandate, defined inputs, and structured outputs — and ha
 
 ```
 claude-agents/
-├── README.md                         # This file
+├── README.md                         
 │
 ├── skills/                           # Context-injected instructions
 │   ├── analyst/
