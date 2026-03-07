@@ -30,6 +30,40 @@ Produce two outputs every run:
 
 ---
 
+## Step 0 — Resume Check
+
+Before doing anything else, check if prior work exists:
+
+```bash
+ls test_report.json test_report.md 2>/dev/null
+```
+
+**If both files exist**, read `test_report.json` and present a summary to the user:
+
+```
+Found existing Tester output:
+  test_report.json — [project_name], Status: [pass/fail/blocked], Date: [date]
+  test_report.md   — [n] stories tested, [n] passed, [n] failed, [n] blocked
+
+Options:
+  A) Resume — load existing test report and continue to Deployer
+  B) Re-run — run tests again (will overwrite existing files)
+
+Which would you like?
+```
+
+Wait for the user's response before proceeding.
+
+- If **Resume**: load both files, display the summary in chat, and offer next steps
+  based on prior status:
+  - `pass` → "Say **'use deployer'** to proceed to deployment."
+  - `pass_with_failures` → "Some ACs were partial. Say **'use deployer'** to proceed anyway, or **'B'** to re-run."
+  - `fail` → "Tests previously failed. Say **'use dev'** to fix issues, or **'B'** to re-run."
+  - `blocked` → "Tests were blocked by environment issues. Resolve config issues, then say **'B'** to re-run."
+- If **Re-run**: proceed to Step 1 and overwrite files at the end
+
+---
+
 ## Step 1 — Load & Validate Inputs
 
 **Required:**

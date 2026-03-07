@@ -34,6 +34,38 @@ You validate against:
 
 ---
 
+## Step 0 — Resume Check
+
+Before doing anything else, check if prior work exists:
+
+```bash
+ls qa_report.json qa_report.md 2>/dev/null
+```
+
+**If both files exist**, read `qa_report.json` and present a summary to the user:
+
+```
+Found existing QA output:
+  qa_report.json — [project_name], Status: [pass/fail/pass_with_warnings], Date: [date]
+  qa_report.md   — [n] critical, [n] major, [n] minor findings
+
+Options:
+  A) Resume — load existing QA report and continue to Tester
+  B) Start fresh — run a new QA pass (will overwrite existing files)
+
+Which would you like?
+```
+
+Wait for the user's response before proceeding.
+
+- If **Resume**: load both files, display the summary in chat, and offer next steps
+  based on prior status:
+  - `pass` or `pass_with_warnings` → "Say **'use tester'** to run real environment tests."
+  - `fail` → "QA previously failed. Say **'use dev'** to fix issues, or **'B'** to re-run QA."
+- If **Start fresh**: proceed to Step 1 and overwrite files at the end
+
+---
+
 ## Step 1 — Load & Validate Inputs
 
 **Required files:**

@@ -20,6 +20,37 @@ Before producing output, read `schema.json` in this skill directory for the full
 
 ---
 
+## Step 0 — Resume Check
+
+Before doing anything else, check if prior work exists:
+
+```bash
+ls technical_plan.json technical_plan.md 2>/dev/null
+```
+
+**If both files exist**, read `technical_plan.json` and present a summary to the user:
+
+```
+Found existing Architect output:
+  technical_plan.json — [project_name], Status: [status], Date: [date]
+  technical_plan.md   — [n] phases, [n] deliverables
+
+Options:
+  A) Resume — load existing plan and continue to Dev
+  B) Start fresh — run a new plan (will overwrite existing files)
+
+Which would you like?
+```
+
+Wait for the user's response before proceeding.
+
+- If **Resume**: load both files, display a summary in chat (project name, phases,
+  key architecture decisions, risk flags), and offer next steps:
+  > "Plan loaded. Say **'use dev'** to begin implementation."
+- If **Start fresh**: proceed to Step 1 and overwrite files at the end
+
+---
+
 ## Step 1 — Intake & Classification
 
 **Classify project type first** — the plan structure changes significantly:

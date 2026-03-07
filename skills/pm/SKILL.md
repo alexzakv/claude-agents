@@ -23,6 +23,38 @@ Produce two outputs:
 
 ---
 
+## Step 0 — Resume Check
+
+Before doing anything else, check if prior work exists:
+
+```bash
+ls technical_requirements.json technical_requirements.md 2>/dev/null
+```
+
+**If both files exist**, read `technical_requirements.json` and present a summary:
+
+```
+Found existing PM output:
+  technical_requirements.json — [project_name], Status: [status], Date: [date]
+  technical_requirements.md
+
+Options:
+  A) Resume — load existing spec and continue to Designer or Architect
+  B) Start fresh — run a new spec (will overwrite existing files)
+
+Which would you like?
+```
+
+Wait for the user's response before proceeding.
+
+- If **Resume**: load both files, display a summary of the spec in chat (project name,
+  project type, story count, key constraints), and offer next steps:
+  > "Spec loaded. Say **'use designer'** to design the UI, or **'use architect'** to
+  > generate the execution plan directly."
+- If **Start fresh**: proceed to Step 1 and overwrite files at the end
+
+---
+
 ## Step 1 — Intake & Classification
 
 **Classify project type first** — this changes the requirements shape significantly:

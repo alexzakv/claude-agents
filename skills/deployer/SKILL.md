@@ -30,6 +30,40 @@ Produce two outputs every run:
 
 ---
 
+## Step 0 — Resume Check
+
+Before doing anything else, check if prior work exists:
+
+```bash
+ls deployment_report.json deployment_report.md 2>/dev/null
+```
+
+**If both files exist**, read `deployment_report.json` and present a summary to the user:
+
+```
+Found existing Deployer output:
+  deployment_report.json — [project_name], Status: [deployed/partial/failed], Date: [date]
+  deployment_report.md   — platforms: [list], mode: [fresh/resume]
+
+Options:
+  A) Resume — load existing report and retry any failed or skipped targets
+  B) Start fresh — run a full new deployment (will overwrite existing files)
+
+Which would you like?
+```
+
+Wait for the user's response before proceeding.
+
+- If **Resume**: load both files and proceed directly to Step 2 (target detection),
+  skipping already-successful platforms by default. Note resume mode prominently in
+  the new report:
+  - `deployed` → "All platforms deployed successfully. Nothing to resume. Say **'B'** to redeploy."
+  - `partial` → "Some platforms failed or were skipped. Proceeding to retry failed targets."
+  - `failed` → "Deployment failed. Proceeding to retry from failed step."
+- If **Start fresh**: proceed to Step 1 and overwrite files at the end
+
+---
+
 ## Step 1 — Load & Validate Inputs
 
 **Required:**

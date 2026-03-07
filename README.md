@@ -46,7 +46,7 @@ Analyst → Pm → Designer → Architect → Developer → QA → Tester → De
 
 - **Skip `designer`** for backend-only projects, APIs, or CLI tools — go directly from `pm` to `architect`
 - **Skip `analyst`** if you already have clear requirements — start with `pm` directly
-- **`test` and `deploy`** require platform tooling (Xcode, Android Studio, deployment CLIs) — if unavailable, the agent will report blocked coverage rather than fail silently
+- **`tester` and `deployer`** require platform tooling (Xcode, Android Studio, deployment CLIs) — if unavailable, the agent will report blocked coverage rather than fail silently
 
 ---
 
@@ -126,6 +126,39 @@ technical_requirements.json
         → test_report.json
           → deployment_report.json
 ```
+
+---
+
+## Resumable Pipeline
+
+Every stage saves its artifacts to disk and supports resuming from a previous session. If your chat is lost, a session ends, or you want to continue work later, you never have to start from scratch.
+
+**What each stage saves:**
+
+| Stage | Files saved to disk |
+|---|---|
+| `analyst` | `analyst_report.md`, `analyst_handoff.yaml` |
+| `pm` | `technical_requirements.json`, `technical_requirements.md` |
+| `designer` | `designer_report.md`, `designer_handoff.yaml` |
+| `architect` | `technical_plan.json`, `technical_plan.md` |
+| `dev` | `execution_report.json`, `execution_report.md` |
+| `qa` | `qa_report.json`, `qa_report.md` |
+| `tester` | `test_report.json`, `test_report.md` |
+| `deployer` | `deployment_report.json`, `deployment_report.md` |
+
+**How resume works:**
+
+When you trigger any stage, it first checks if output files from a previous run already exist. If found, it presents a summary and asks:
+
+```
+Found existing [stage] output — [project name], Date: [date]
+
+Options:
+  A) Resume — load existing output and continue to next stage
+  B) Start fresh — run again and overwrite existing files
+```
+
+This means the entire pipeline is restartable from any point — just trigger the stage you want to continue from.
 
 ---
 
