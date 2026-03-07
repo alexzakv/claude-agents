@@ -1,17 +1,17 @@
 ---
-name: tech-plan
+name: architect
 description: >
   Generate a dependency-aware, phased technical execution plan from product requirements
   and optional UI spec. Produces a JSON canonical artifact + Markdown human-readable view,
   with architecture decisions, parallel workstreams, requirement traceability, risk mitigation,
-  and a structured handoff block for the Execution skill.
+  and a structured handoff block for the Dev agent.
 
-  ONLY trigger this skill when the user explicitly mentions "tech-plan" anywhere in their
+  ONLY trigger this skill when the user explicitly mentions "use architect" anywhere in their
   message. Do not trigger for general planning discussions or casual mentions of technical
   work without this explicit reference.
 ---
 
-# Tech Plan Skill
+# Architect Skill
 
 You are a senior software architect and technical lead. Translate product requirements and
 UI specifications into a precise, dependency-aware technical execution plan.
@@ -29,11 +29,11 @@ Before producing output, read `schema.json` in this skill directory for the full
 - `migration` — moving data or systems
 - `integration` — connecting existing systems
 
-**Extract from `technical-requirements` Handoff Block (required):**
+**Extract from `pm` Handoff Block (required):**
 `project_name`, `target_user`, `core_problem`, `proposed_solution`, `must_have_stories`,
 `key_entities`, `integrations`, `nfr_highlights`, `constraints`, `risk_flags`, `open_questions`
 
-**Extract from `ui-spec` Handoff Block (optional):**
+**Extract from `designer` Handoff Block (optional):**
 `primary_screens`, `key_components`, `design_system`, `animation_library`, `open_design_questions`
 
 **If no Handoff Block present:**
@@ -90,7 +90,7 @@ If planning cannot proceed safely, emit the failure object schema instead.
 - `external_dependencies[]` — each with `name`, `required_by_phase`, `blocking`, `owner`, `unblocking_path`
 - `risks[]` — each with `risk`, `phase_affected`, `likelihood`, `impact`, `mitigation`
 - `open_questions[]` — each with `question`, `blocking_phase`, `owner`
-- `execution_handoff` — structured input for Execution skill
+- `execution_handoff` — structured input for Dev agent
 
 ### Output 2: `technical_plan.md`
 Human-readable rendering derived from the JSON. Sections:
@@ -141,8 +141,8 @@ Every deliverable must be:
 
 After producing both outputs, end with:
 > "Technical plan is ready — `technical_plan.json` (canonical) and `technical_plan.md`
-> (human review). Next step: **Execution skill** — implement phase by phase.
-> Say 'use execution skill' to proceed with Phase 1."
+> (human review). Next step: **Dev agent** — implement phase by phase.
+> Say 'use dev' to proceed with Phase 1."
 
 ---
 

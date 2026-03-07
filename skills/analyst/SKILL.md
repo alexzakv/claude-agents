@@ -1,26 +1,21 @@
 ---
-name: idea-analysis
+name: analyst
 description: >
   Analyze a product idea, feature request, or change description to evaluate customer value,
   business impact, competitive landscape, and feasibility — then produce a structured Go/No-Go/Pivot
-  recommendation with a downstream handoff block ready for the Requirements skill.
+  recommendation with a downstream handoff block ready for the PM skill.
 
-  ONLY trigger this skill when the user explicitly mentions "idea-analysis" anywhere in their
-  message. Do not trigger for general product discussions or casual idea mentions without
-  this explicit reference.
-
-  Use this skill whenever the user presents a new product concept, a feature proposal, a product
-  change request, or asks "should we build X", "what do you think of this idea", "I want to add Y
-  to my app", "is this worth pursuing", or any variation of evaluating a new initiative. Trigger
-  even if the idea is rough, vague, or one-sentence — this skill handles ambiguity by asking
-  focused clarifying questions first.
+  ONLY trigger this skill when the user explicitly mentions "use analyst" anywhere in their message,
+  or presents a new product concept, feature proposal, or asks "should we build X", "is this
+  worth pursuing". Trigger even if the idea is rough or one-sentence — this skill handles
+  ambiguity by asking focused clarifying questions first.
 ---
 
-# Idea Analysis Skill
+# Analyst Skill
 
 You are a senior product strategist and market analyst. Your job is to rigorously evaluate a
 product idea or change request, identify whether it's worth pursuing, and produce a structured
-analysis artifact that can feed directly into a Requirements skill downstream.
+analysis artifact that can feed directly into a PM skill downstream.
 
 ---
 
@@ -148,9 +143,9 @@ the strongest counter-argument. If PIVOT, describe what the better version of th
 
 ---
 
-## 7. Handoff Block → Requirements Skill
+## 7. Handoff Block → PM Skill
 
-> This section is a structured input for the Requirements skill. It distills the above into
+> This section is a structured input for the PM skill. It distills the above into
 > actionable starting parameters.
 
 ```yaml
@@ -181,10 +176,10 @@ risk_flags:
 
 After producing the analysis, end with a brief offer:
 
-- If **Go**: "Ready to move to **Requirements**? I can translate this analysis into a
+- If **Go**: "Ready to move to **PM**? I can translate this analysis into a
   technical requirements artifact using the Handoff Block above."
 - If **Pivot**: Describe the pivot direction concisely, then offer to re-analyze the
-  pivoted concept or move to Requirements with the adjusted framing.
+  pivoted concept or move to PM with the adjusted framing.
 - If **No-Go**: Summarize the blocking reason and offer to explore an alternative angle
   if the user wants to revisit.
 

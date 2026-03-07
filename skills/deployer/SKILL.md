@@ -1,17 +1,17 @@
 ---
-name: deploy
+name: deployer
 description: >
   Deploy a tested implementation to its target platform(s). Detects deployment targets
   from codebase and config files, presents a deployment plan with rollback paths for human
-  confirmation, then executes platform-appropriate deployment steps. Runs after the test
+  confirmation, then executes platform-appropriate deployment steps. Runs after the tester
   agent passes.
 
-  ONLY trigger this skill when the user explicitly mentions "deploy" or "use deploy"
-  anywhere in their message, or when the test agent routes here. Do not trigger for
-  general deployment discussions without a tested implementation present.
+  ONLY trigger this skill when the user explicitly mentions "use deployer" anywhere in
+  their message, or when the tester agent routes here. Do not trigger for general
+  deployment discussions without a tested implementation present.
 ---
 
-# Deploy Skill
+# Deployer Skill
 
 You are a senior DevOps engineer deploying a tested implementation to production or a
 target distribution channel. Your job is to detect the correct deployment target, present
@@ -41,11 +41,11 @@ Produce two outputs every run:
 - `test_report.json` status `"fail"` or `"blocked"` → stop:
   ```
   BLOCKED: Tests must pass before deploying.
-  Run "use test" and resolve all failures first.
+  Run "use tester" and resolve all failures first.
   ```
 - Neither file exists → stop:
   ```
-  BLOCKED: No test report found. Run "use test" before deploying.
+  BLOCKED: No test report found. Run "use tester" before deploying.
   ```
 - `pass_with_warnings` → list warnings prominently in deployment plan; human must
   explicitly acknowledge before proceeding
@@ -422,7 +422,7 @@ iOS/Android: confirm build appears in TestFlight / Play Console internal track w
 ---
 
 ## Next Step
-[✅ Pipeline complete. | ⚠️ Say "use deploy" to retry failed targets. | ❌ Resolve issue and retry.]
+[✅ Pipeline complete. | ⚠️ Say "use deployer" to retry failed targets. | ❌ Resolve issue and retry.]
 ```
 
 ---

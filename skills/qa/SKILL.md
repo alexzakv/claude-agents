@@ -6,8 +6,8 @@ description: >
   available tests, checks every must-have story and acceptance criterion by ID, classifies
   findings by severity, and auto-routes to the correct next step.
 
-  ONLY trigger this skill when the user explicitly mentions "qa" or "use qa skill" anywhere
-  in their message. Do not trigger for general code review or testing requests without both
+  ONLY trigger this skill when the user explicitly mentions "use qa" anywhere in their
+  message. Do not trigger for general code review or testing requests without both
   artifact files present.
 ---
 
@@ -24,7 +24,7 @@ output. Execution reports are evidence, not proof.
 **QA boundary:** QA performs code-level and repo-level verification — changed file inspection,
 artifact validation, existing tests, build, typecheck, and lint. QA does not perform full
 runtime environment testing (simulators, browsers, live servers); that is the role of the
-Tests agent which runs after QA passes.
+Tester agent which runs after QA passes.
 
 You validate against:
 - `technical_requirements.json` — source of truth for what was required
@@ -219,7 +219,7 @@ Produce both outputs. The JSON is canonical — markdown is derived from it.
     "minor": [],
     "advisory": []
   },
-  "next_step": "tests | execution | tech_plan | tech_spec | awaiting_instruction"
+  "next_step": "tester | dev | architect | pm | awaiting_instruction"
 }
 ```
 
@@ -322,24 +322,24 @@ Append to report based on findings:
 
 **Critical/major findings that are implementation errors** (failed AC, wrong behavior,
 contradicted execution claim, undeclared changes):
-> ❌ **Failures detected.** Say **"use execution"** to fix:
+> ❌ **Failures detected.** Say **"use dev"** to fix:
 > [list each critical/major finding with AC ID or FR ID]
 
 **Critical/major findings that are plan gaps** (story never in plan, constraint conflict,
 API spec requires redesign):
-> ⚠️ **Plan revision required.** Say **"use tech-plan"** to revise before re-execution.
+> ⚠️ **Plan revision required.** Say **"use architect"** to revise before re-execution.
 > Reason: [specific gaps]
 
 **Critical findings where spec was wrong** (AC ID missing from spec, FR contradicts
 implementation in ways suggesting spec error):
-> ⚠️ **Spec revision required.** Say **"use tech-spec"** to update requirements, then
-> **"use tech-plan"** to revise the plan.
+> ⚠️ **Spec revision required.** Say **"use pm"** to update requirements, then
+> **"use architect"** to revise the plan.
 
 **Only minor/advisory findings:**
-> ⚠️ **Pass with warnings.** Review advisory items, then say **"use tests"** to proceed to runtime testing.
+> ⚠️ **Pass with warnings.** Review advisory items, then say **"use tester"** to proceed to runtime testing.
 
 **No findings:**
-> ✅ **All requirements satisfied.** Say **"use tests"** to run real environment tests before deploy.
+> ✅ **All requirements satisfied.** Say **"use tester"** to run real environment tests before deploy.
 
 ---
 
@@ -347,13 +347,13 @@ implementation in ways suggesting spec error):
 
 | Finding | Route |
 |---|---|
-| Failed/missing AC — implementation error | `execution` |
-| Story uncovered — was in plan | `execution` |
-| Story uncovered — never in plan | `tech-plan` |
-| Constraint violated | `tech-plan` |
-| API contract drift — implementation error | `execution` |
-| API contract drift — spec error | `tech-spec` → `tech-plan` |
-| Execution report contradicted by tests | `execution` |
-| Scope creep — compliance/auth/API/data | `execution` (revert) or human decision |
+| Failed/missing AC — implementation error | `dev` |
+| Story uncovered — was in plan | `dev` |
+| Story uncovered — never in plan | `architect` |
+| Constraint violated | `architect` |
+| API contract drift — implementation error | `dev` |
+| API contract drift — spec error | `pm` → `architect` |
+| Execution report contradicted by tests | `dev` |
+| Scope creep — compliance/auth/API/data | `dev` (revert) or human decision |
 | Scope creep — utilities/helpers | Advisory — human decision |
-| All clear | `tests` (then deploy) |
+| All clear | `tester` (then deploy) |

@@ -1,21 +1,21 @@
 ---
-name: tech-spec
+name: pm
 description: >
   Translate a product idea or change request into a complete, implementation-ready technical
   specification — covering project classification, functional requirements, non-functional
   requirements, user stories with acceptance criteria, data model, API contracts, integrations,
   and requirement traceability. Produces a canonical JSON artifact + human-readable markdown.
 
-  ONLY trigger this skill when the user explicitly mentions "tech-spec" anywhere in their
+  ONLY trigger this skill when the user explicitly mentions "use pm" anywhere in their
   message. Do not trigger for general planning discussions or casual mentions of features
   without this explicit reference.
 ---
 
-# Tech Spec Skill
+# PM Skill
 
 You are a senior technical product manager and solutions architect. Translate user intent
-into a precise, implementation-ready specification that downstream agents (ui-spec, tech-plan,
-execution) can consume without ambiguity.
+into a precise, implementation-ready specification that downstream agents (designer, architect,
+dev) can consume without ambiguity.
 
 Produce two outputs:
 1. `technical_requirements.json` — canonical source of truth
@@ -32,7 +32,7 @@ Produce two outputs:
 - `refactor-migration` — emphasize backward compatibility, transition strategy, data migration
 - `integration` — emphasize contracts, failure modes, data flow, auth
 
-**From `idea-analysis` Handoff Block (if present):**
+**From `analyst` Handoff Block (if present):**
 Extract `target_user`, `core_problem`, `proposed_solution`, `success_metrics`,
 `constraints`, `out_of_scope`, `open_questions`, `risk_flags`. Proceed to Step 2.
 
@@ -69,7 +69,7 @@ Canonical artifact. Schema summary:
   "status": "complete | blocked",
   "project_name": "",
   "project_type": "greenfield | feature-extension | redesign | refactor-migration | integration",
-  "source": "idea-analysis handoff | direct input",
+  "source": "analyst handoff | direct input",
   "target_user": "",
   "overview": {
     "problem_statement": "",
@@ -269,7 +269,7 @@ Human-readable rendering derived from the JSON. Sections:
 ## Step 4 — Deliver & Offer Next Step
 
 End with:
-> "Tech spec is ready — `technical_requirements.json` (canonical) and
+> "PM spec is ready — `technical_requirements.json` (canonical) and
 > `technical_requirements.md` (human review).
-> Next step: say **'use ui-spec'** to design the UI, or **'use tech-plan'** to generate
+> Next step: say **'use designer'** to design the UI, or **'use architect'** to generate
 > the execution plan directly."
