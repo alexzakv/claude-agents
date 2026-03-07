@@ -10,42 +10,42 @@ Whether you're building a mobile app, web product, or backend service, this pipe
 
 Once installed, run each stage in sequence by mentioning its name:
 
-1. `use idea-analysis` — evaluate your idea
-2. `use tech-spec` — generate requirements
-3. `use ui-spec` — design the UI *(skip for backend-only projects)*
-4. `use tech-plan` — generate the execution plan
-5. `use execution` — implement the code
-6. `use qa skill` — validate implementation against requirements
-7. `use test` — run real environment tests
-8. `use deploy` — deploy to target platform(s)
+1. `use analyst` — evaluate your idea
+2. `use pm` — generate requirements
+3. `use designer` — design the UI *(skip for backend-only projects)*
+4. `use architect` — generate the execution plan
+5. `use dev` — implement the code
+6. `use qa` — validate implementation against requirements
+7. `use tester` — run real environment tests
+8. `use deployer` — deploy to target platform(s)
 
 ---
 
 ## Pipeline Overview
 
 ```
-idea-analysis → tech-spec → ui-spec → tech-plan → execution → qa → test → deploy
+Analyst → Pm → Designer → Architect → Developer → QA → Tester → Deployer
 ```
 
 | Stage | Type | Trigger | Input | Output |
 |---|---|---|---|---|
-| `idea-analysis` | Skill | `"use idea-analysis"` | Raw idea | Go/No-Go recommendation + handoff YAML |
-| `tech-spec` | Skill | `"use tech-spec"` | idea-analysis handoff | `technical_requirements.json` + `.md` + handoff block |
-| `ui-spec` | Agent | `"use ui-spec"` | tech-spec handoff block | UI specification document |
-| `tech-plan` | Skill | `"use tech-plan"` | `technical_requirements.json` | `technical_plan.json` + `.md` |
-| `execution` | Agent | `"use execution"` | `technical_plan.json` | `execution_report.json` + `.md` |
-| `qa` | Skill | `"use qa skill"` | `technical_requirements.json` + `execution_report.json` | `qa_report.json` + `.md` |
-| `test` | Agent | `"use test"` | `qa_report.json` + codebase | `test_report.json` + `.md` |
-| `deploy` | Skill | `"use deploy"` | `test_report.json` + codebase | `deployment_report.json` + `.md` |
+| `analyst` | Skill | `"use analyst"` | Raw idea | Go/No-Go recommendation + handoff YAML |
+| `pm` | Skill | `"use pm"` | analyst handoff | `technical_requirements.json` + `.md` + handoff block |
+| `designer` | Agent | `"use designer"` | pm handoff block | UI specification document |
+| `architect` | Skill | `"use architect"` | `technical_requirements.json` | `technical_plan.json` + `.md` |
+| `dev` | Agent | `"use dev"` | `technical_plan.json` | `execution_report.json` + `.md` |
+| `qa` | Skill | `"use qa"` | `technical_requirements.json` + `execution_report.json` | `qa_report.json` + `.md` |
+| `tester` | Agent | `"use tester"` | `qa_report.json` + codebase | `test_report.json` + `.md` |
+| `deployer` | Skill | `"use deployer"` | `test_report.json` + codebase | `deployment_report.json` + `.md` |
 
-> **Note:** `idea-analysis` emits a handoff YAML and `ui-spec` emits a structured design document — neither produces canonical JSON. All other stages produce canonical JSON artifacts consumed by the next stage.
+> **Note:** `analyst` emits a handoff YAML and `designer` emits a structured design document — neither produces canonical JSON. All other stages produce canonical JSON artifacts consumed by the next stage.
 
 ---
 
 ## When to Skip a Stage
 
-- **Skip `ui-spec`** for backend-only projects, APIs, or CLI tools — go directly from `tech-spec` to `tech-plan`
-- **Skip `idea-analysis`** if you already have clear requirements — start with `tech-spec` directly
+- **Skip `designer`** for backend-only projects, APIs, or CLI tools — go directly from `pm` to `architect`
+- **Skip `analyst`** if you already have clear requirements — start with `pm` directly
 - **`test` and `deploy`** require platform tooling (Xcode, Android Studio, deployment CLIs) — if unavailable, the agent will report blocked coverage rather than fail silently
 
 ---
@@ -61,10 +61,10 @@ This pipeline changes that by introducing **structure, contracts, and specializa
 | **How you work** | Describe what you want in natural language | Each stage has a defined role, inputs, and outputs |
 | **Output format** | Freeform code and text | Structured artifacts consumed by the next stage |
 | **Requirements** | Implicit — Claude infers intent | Explicit — `technical_requirements.json` defines every user story, acceptance criteria, and constraint |
-| **Implementation** | Claude decides scope and approach | Execution agent follows an approved plan exactly — no scope creep |
+| **Implementation** | Claude decides scope and approach | Dev agent follows an approved plan exactly — no scope creep |
 | **Validation** | You review the code manually | QA agent independently inspects files, runs tests, and validates against requirements |
-| **Testing** | Manual or ad hoc | Test agent runs real-environment tests where tooling is available, and reports blocked or partial coverage when the environment cannot fully validate a story |
-| **Deployment** | You run deploy commands yourself | Deploy skill detects targets, presents a plan with rollback paths, and requires explicit confirmation |
+| **Testing** | Manual or ad hoc | Tester agent runs real-environment tests where tooling is available, and reports blocked or partial coverage when the environment cannot fully validate a story |
+| **Deployment** | You run deploy commands yourself | Deployer skill detects targets, presents a plan with rollback paths, and requires explicit confirmation |
 | **Traceability** | None — hard to know what was built and why | Every requirement traces to a deliverable, every deliverable traces to test results |
 | **Multi-machine** | Custom setup is often local unless you version it in Git | Everything versioned in Git — pull on any machine and continue |
 
@@ -74,14 +74,14 @@ Default Claude Code is **conversational** — each message is relatively indepen
 
 The result is a workflow that behaves more like a small engineering team than a single AI assistant:
 
-- `idea-analysis` acts like a **product strategist**
-- `tech-spec` acts like a **technical product manager**
-- `ui-spec` acts like a **UX designer**
-- `tech-plan` acts like a **solutions architect**
-- `execution` acts like a **senior engineer**
-- `qa` acts like a **QA engineer**
-- `test` acts like a **QA automation engineer**
-- `deploy` acts like a **DevOps engineer**
+- `analyst` acts like a **Product Strategist**
+- `pm` acts like a **Technical Product Manager**
+- `designer` acts like a **UX Designer**
+- `architect` acts like a **Solutions Architect**
+- `dev` acts like a **Principal Engineer**
+- `qa` acts like a **QA Engineer**
+- `tester` acts like a **QA Engineer in production environment**
+- `deployer` acts like a **DevOps Engineer**
 
 Each role has a clear mandate, defined inputs, and structured outputs — and hands off cleanly to the next.
 
@@ -94,29 +94,29 @@ claude-agents/
 ├── README.md                         # This file
 │
 ├── skills/                           # Context-injected instructions
-│   ├── idea-analysis/
+│   ├── analyst/
 │   │   └── SKILL.md
-│   ├── tech-spec/
+│   ├── pm/
 │   │   └── SKILL.md
-│   ├── tech-plan/
+│   ├── architect/
 │   │   ├── SKILL.md
 │   │   └── schema.json               # JSON Schema for technical_plan.json
 │   ├── qa/
 │   │   └── SKILL.md
-│   └── deploy/
+│   └── deployer/
 │       └── SKILL.md
 │
 └── agents/                           # Autonomous Claude Code subagents
-    ├── ui-spec.md
-    ├── execution.md
-    └── test.md
+    ├── designer.md
+    ├── dev.md
+    └── tester.md
 ```
 
 ---
 
 ## Canonical Artifact Chain
 
-`idea-analysis` and `ui-spec` produce structured handoff and design artifacts rather than canonical JSON, so they are not shown in this chain. All other stages produce canonical JSON read by the next stage.
+`analyst` and `designer` produce structured handoff and design artifacts rather than canonical JSON, so they are not shown in this chain. All other stages produce canonical JSON read by the next stage.
 
 ```
 technical_requirements.json
@@ -133,55 +133,55 @@ technical_requirements.json
 
 Skills are context-injected instructions that activate when their name is mentioned. Stored in `~/.claude/skills/`.
 
-### `idea-analysis`
+### `Analyst`
 Evaluates a product idea and produces a structured Go/No-Go/Pivot recommendation.
 
-- **Trigger:** mention `"idea-analysis"` in your message
+- **Trigger:** say `"use analyst"`
 - **Input:** raw product idea or change request
-- **Output:** structured analysis with customer value, business impact, feasibility, recommendation, and a YAML handoff block for `tech-spec`
+- **Output:** structured analysis with customer value, business impact, feasibility, recommendation, and a YAML handoff block for `pm`
 - **Sections:** Idea Summary → Customer Value → Business Impact → Market & Competitors → Feasibility → Recommendation → Handoff Block
 
 ---
 
-### `tech-spec`
+### `PM`
 Translates a product idea into a complete, implementation-ready technical specification.
 
-- **Trigger:** mention `"tech-spec"` in your message
-- **Input:** `idea-analysis` handoff block OR raw description
-- **Output:** `technical_requirements.json` (canonical) + `technical_requirements.md` + handoff block for `ui-spec` and `tech-plan`
+- **Trigger:** say `"use pm"`
+- **Input:** `analyst` handoff block OR raw description
+- **Output:** `technical_requirements.json` (canonical) + `technical_requirements.md` + handoff block for `designer` and `architect`
 - **Covers:** project classification, user stories with acceptance criteria IDs, functional requirements with validation rules, NFRs with priority levels, data model, API contracts, integrations, traceability matrix, constraints, assumptions
 - **Project types:** `greenfield` / `feature-extension` / `redesign` / `refactor-migration` / `integration`
 
 ---
 
-### `tech-plan`
+### `Architect`
 Generates a dependency-aware, phased technical execution plan from requirements.
 
-- **Trigger:** mention `"tech-plan"` in your message
+- **Trigger:** say `"use architect"`
 - **Input:** `technical_requirements.json`
 - **Output:** `technical_plan.json` (canonical) + `technical_plan.md`
 - **Covers:** architecture decisions, parallel workstreams, deliverables with acceptance criteria, cross-cutting checklist (auth, observability, CI/CD, etc.), requirement traceability, risk flags, external dependencies, execution handoff block
-- **Schema:** defined in `skills/tech-plan/schema.json`
+- **Schema:** defined in `skills/architect/schema.json`
 
 ---
 
-### `qa`
+### `QA`
 Validates a completed implementation against the original requirements.
 
-- **Trigger:** mention `"use qa skill"` in your message
+- **Trigger:** say `"use qa"`
 - **Input:** `technical_requirements.json` + `execution_report.json` + codebase
 - **Output:** `qa_report.json` (canonical) + `qa_report.md`
 - **QA model:** real implementation validation — independently inspects changed files, runs tests/build/lint, compares against execution claims
 - **Covers:** story coverage, acceptance criteria validation by stable ID, requirements drift, API contract drift, data model drift, scope creep, constraint violations
 - **Severity:** Critical / Major / Minor / Advisory
-- **Auto-routes:** implementation errors → `execution`; plan gaps → `tech-plan`; spec errors → `tech-spec`; all clear → `test`
+- **Auto-routes:** implementation errors → `dev`; plan gaps → `architect`; spec errors → `pm`; all clear → `tester`
 
 ---
 
-### `deploy`
+### `Deployer`
 Deploys a tested implementation to its target platform(s).
 
-- **Trigger:** mention `"use deploy"` in your message
+- **Trigger:** say `"use deployer"`
 - **Input:** `test_report.json` + codebase
 - **Output:** `deployment_report.json` (canonical) + `deployment_report.md`
 - **Platforms:** iOS (App Store / TestFlight), Android (Play Store), Web (Vercel / Netlify / GitHub Pages / AWS / GCP), Backend (Railway / Render / Fly.io / Heroku / Docker), React Native, Flutter
@@ -194,21 +194,21 @@ Deploys a tested implementation to its target platform(s).
 
 Agents are autonomous subagents in Claude Code with their own model, tools, and memory. Stored in `~/.claude/agents/`.
 
-### `ui-spec`
+### `Designer`
 Produces a complete UI specification from technical requirements.
 
-- **Trigger:** mention `"use ui-spec"` in your message
+- **Trigger:** say `"use designer"`
 - **Model:** Opus
-- **Input:** `tech-spec` handoff block
+- **Input:** `pm` handoff block
 - **Output:** UI specification with screen inventory, component hierarchy, interaction flows, responsive wireframes, accessibility requirements, design tokens, requirement traceability
 - **Project types:** `greenfield` / `feature-extension` / `redesign` / `design-system-extension`
 
 ---
 
-### `execution`
+### `Dev`
 Implements an approved technical plan phase by phase.
 
-- **Trigger:** mention `"use execution"` in your message
+- **Trigger:** say `"use dev"`
 - **Model:** Sonnet
 - **Input:** `technical_plan.json`
 - **Output:** `execution_report.json` (canonical) + `execution_report.md`
@@ -218,10 +218,10 @@ Implements an approved technical plan phase by phase.
 
 ---
 
-### `test`
+### `Tester`
 Runs real environment tests against a completed implementation.
 
-- **Trigger:** mention `"use test"` in your message
+- **Trigger:** say `"use tester"`
 - **Model:** Sonnet
 - **Input:** `qa_report.json` + `technical_requirements.json` + `execution_report.json` + codebase
 - **Output:** `test_report.json` (canonical) + `test_report.md`
@@ -280,6 +280,24 @@ claude() {
 }
 ```
 
+
+---
+
+## Trigger Reference
+
+All skills and agents are **only triggered when explicitly named** — they never activate automatically on general requests.
+
+| Say this | Activates |
+|---|---|
+| `"use analyst"` | analyst skill |
+| `"use pm"` | pm skill |
+| `"use designer"` | designer agent |
+| `"use architect"` | architect skill |
+| `"use dev"` | dev agent |
+| `"use qa"` | qa skill |
+| `"use tester"` | tester agent |
+| `"use deployer"` | deployer skill |
+
 ---
 
 ## How Skills and Agents Differ
@@ -295,31 +313,14 @@ claude() {
 
 ---
 
-## Trigger Reference
-
-All skills and agents are **only triggered when explicitly named** — they never activate automatically on general requests.
-
-| Say this | Activates |
-|---|---|
-| `"use idea-analysis"` | idea-analysis skill |
-| `"use tech-spec"` | tech-spec skill |
-| `"use ui-spec"` | ui-spec agent |
-| `"use tech-plan"` | tech-plan skill |
-| `"use execution"` | execution agent |
-| `"use qa skill"` | qa skill |
-| `"use test"` | test agent |
-| `"use deploy"` | deploy skill |
-
----
-
 ## Examples
 
-### Skill example — `tech-spec`
+### Skill example — `pm`
 
 ```
-You: I want to build a habit tracking app for iOS. Use tech-spec.
+You: I want to build a habit tracking app for iOS. Use pm.
 
-Claude: [runs tech-spec]
+Claude: [runs pm]
         → Classified as: greenfield
         → Generated technical_requirements.json with:
           - 6 must-have user stories
@@ -327,15 +328,15 @@ Claude: [runs tech-spec]
           - Data model: User, Habit, HabitLog
           - API contracts for 8 endpoints
           - NFRs: < 2s load, 99.9% uptime, WCAG 2.1 AA
-        → Next step: say "use ui-spec" or "use tech-plan"
+        → Next step: say "use designer" or "use architect"
 ```
 
-### Agent example — `execution`
+### Agent example — `dev`
 
 ```
-You: Use execution.
+You: Use dev.
 
-Claude: [runs execution agent]
+Claude: [runs dev agent]
         → Loaded technical_plan.json — 3 phases, 12 deliverables
         → Scanned codebase — Swift, SwiftUI, confirmed stack match
         → Scope confirmed: Phase 1 targets src/models, src/api
@@ -344,5 +345,5 @@ Claude: [runs execution agent]
           ✅ D-002: Habit data model — all 2 criteria verified
           ✅ D-003: Core API endpoints — 4/4 criteria verified
         → Phase 1 complete. Proceeding to phase 2...
-        → execution_report.json ready. Next step: use qa skill.
+        → execution_report.json ready. Next step: use qa.
 ```
