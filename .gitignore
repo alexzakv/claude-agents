@@ -1,0 +1,11 @@
+# Session data and cache
+.session*
+*.log
+cache/
+todos/
+
+# Sensitive local config
+settings.local.json
+
+# OS files
+.DS_Store
