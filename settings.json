@@ -1,1 +1,11 @@
-{}
+{
+  "lsp": {
+    "swift": {
+      "command": "xcrun",
+      "args": ["sourcekit-lsp"],
+      "extensionToLanguage": {
+        ".swift": "swift"
+      }
+    }
+  }
+}
