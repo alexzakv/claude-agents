@@ -10,6 +10,8 @@ description: >
   requests without an explicit plan artifact present.
 
 tools: Glob, Grep, Read, WebFetch, WebSearch, Edit, Write, NotebookEdit, Bash
+model: sonnet
+memory: user
 ---
 
 # Dev Agent

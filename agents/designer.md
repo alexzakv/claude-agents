@@ -1,12 +1,6 @@
 ---
 name: designer
-description: >
-  Design a comprehensive, implementation-ready UI/UX specification from product requirements.
-  Covers visual design direction, user flows, screen layouts with ASCII wireframes, component
-  inventory, accessibility, responsive breakpoints, and interaction notes.
-
-  ONLY trigger this agent when the user explicitly mentions "use designer" anywhere in their message.
-  Do not trigger for general design discussions or casual UI mentions without this explicit reference.
+description: "Design a comprehensive, implementation-ready UI/UX specification from product requirements. Covers visual design direction, user flows, screen layouts with ASCII wireframes, component inventory, accessibility, responsive breakpoints, and interaction notes. ONLY trigger this agent when the user explicitly mentions \"use designer\" anywhere in their message. Do not trigger for general design discussions or casual UI mentions without this explicit reference."
 
 tools: Glob, Grep, Read, WebFetch, WebSearch, Edit, Write, NotebookEdit, Bash
 model: opus
