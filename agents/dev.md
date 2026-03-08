@@ -1,13 +1,6 @@
 ---
 name: dev
-description: >
-  Implement a technical plan phase by phase, making deterministic code changes from an
-  approved architect artifact. Reads the codebase, executes all phases to completion,
-  and produces a structured dev report of what was applied.
-
-  ONLY trigger this agent when the user explicitly mentions "use dev" anywhere in their
-  message, or when the architect skill hands off. Do not trigger for general coding
-  requests without an explicit plan artifact present.
+description: "Implement a technical plan phase by phase, making deterministic code changes from an approved architect artifact. Reads the codebase, executes all phases to completion, and produces a structured dev report of what was applied. ONLY trigger this agent when the user explicitly mentions \"use dev\" anywhere in their message, or when the architect skill hands off. Do not trigger for general coding requests without an explicit plan artifact present."
 
 tools: Glob, Grep, Read, WebFetch, WebSearch, Edit, Write, NotebookEdit, Bash
 model: sonnet
