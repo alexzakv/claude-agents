@@ -176,6 +176,9 @@
     width: .45em; height: .45em; border-radius: 50%;
     background: var(--accent); opacity: .55;
   }
+  ul.answers li.bracket { font-style: italic; font-size: .9rem; color: var(--ink-soft); }
+  ul.answers li.bracket::before { display: none; }
+  ul.answers li.bracket { padding-left: 0; margin-top: .35rem; }
   ul.answers.long { columns: 2; column-gap: 2rem; display: block; }
   ul.answers.long li { margin-bottom: .3rem; break-inside: avoid; }
   @media (max-width: 540px) { ul.answers.long { columns: 1; } }
@@ -273,7 +276,7 @@
   </div>
 
   <footer>
-    <p>Source: USCIS, <em>128 Civics Questions and Answers (2025 version)</em>. Questions about current officeholders (marked on their cards) change over time — verify at <strong>uscis.gov/citizenship/testupdates</strong> before your interview. If you are 65 or older and have been a permanent resident for 20+ years, a shorter starred subset applies — see the official PDF.</p>
+    <p>Questions and answers are reproduced verbatim from USCIS, <em>128 Civics Questions and Answers (2025 version)</em>. USCIS notes there may be additional correct answers, but applicants are encouraged to respond using the answers provided. Answers to questions 24, 30, 38, 39, 53, and 57 may change because of elections or appointments — verify at <strong>uscis.gov/citizenship/testupdates</strong> before your interview. If you are 65 or older and have been a permanent resident for 20+ years, a shorter starred subset applies — see the official PDF.</p>
     <p>Your progress is saved in this browser.</p>
     <button class="linklike" id="reset" type="button">Reset all progress</button>
   </footer>
@@ -315,23 +318,23 @@ const CARDS = [
 [20,1,"Name one power of the U.S. Congress.",["Writes laws","Declares war","Makes the federal budget"]],
 [21,1,"How many U.S. senators are there?",["One hundred (100)"]],
 [22,1,"How long is a term for a U.S. senator?",["Six (6) years"]],
-[23,1,"Who is one of your state’s U.S. senators now?",["Answers will vary."],"Residents of the District of Columbia or U.S. territories: answer that D.C. (or your territory) has no U.S. senators. Look up your two senators at senate.gov."],
-[24,1,"How many voting members are in the House of Representatives?",["Four hundred thirty-five (435)"],"USCIS notes this number can change — verify at uscis.gov/citizenship/testupdates."],
+[23,1,"Who is one of your state’s U.S. senators now?",["Answers will vary.","[District of Columbia residents and residents of U.S. territories should answer that D.C. (or the territory where the applicant lives) has no U.S. senators.]"],"Look up your two senators at senate.gov."],
+[24,1,"How many voting members are in the House of Representatives?",["Four hundred thirty-five (435)","Visit uscis.gov/citizenship/testupdates for the number of voting members of the House of Representatives."]],
 [25,1,"How long is a term for a member of the House of Representatives?",["Two (2) years"]],
 [26,1,"Why do U.S. representatives serve shorter terms than U.S. senators?",["To more closely follow public opinion"]],
 [27,1,"How many senators does each state have?",["Two (2)"]],
 [28,1,"Why does each state have two senators?",["Equal representation (for small states)","The Great Compromise (Connecticut Compromise)"]],
-[29,1,"Name your U.S. representative.",["Answers will vary."],"Residents of territories with nonvoting delegates or resident commissioners may name that delegate or commissioner. Find yours at house.gov."],
-[30,1,"What is the name of the Speaker of the House of Representatives now?",["Mike Johnson (as of early 2026)"],"This answer changes — verify the current Speaker at uscis.gov/citizenship/testupdates before your interview."],
+[29,1,"Name your U.S. representative.",["Answers will vary.","[Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.]"],"Find your representative at house.gov."],
+[30,1,"What is the name of the Speaker of the House of Representatives now?",["Visit uscis.gov/citizenship/testupdates for the name of the Speaker of the House of Representatives."],"Answer with the official serving at the time of your interview — Mike Johnson as of early 2026."],
 [31,1,"Who does a U.S. senator represent?",["Citizens of their state"]],
 [32,1,"Who elects U.S. senators?",["Citizens from their state"]],
-[33,1,"Who does a member of the House of Representatives represent?",["Citizens in their (congressional) district","Citizens in their district"]],
+[33,1,"Who does a member of the House of Representatives represent?",["Citizens in their (congressional) district"]],
 [34,1,"Who elects members of the House of Representatives?",["Citizens from their (congressional) district"]],
 [35,1,"Some states have more representatives than other states. Why?",["(Because of) the state’s population","(Because) they have more people","(Because) some states have more people"]],
 [36,1,"The President of the United States is elected for how many years?",["Four (4) years"]],
 [37,1,"The President of the United States can serve only two terms. Why?",["(Because of) the 22nd Amendment","To keep the president from becoming too powerful"]],
-[38,1,"What is the name of the President of the United States now?",["Donald Trump (as of early 2026)"],"This answer changes — verify the current president at uscis.gov/citizenship/testupdates before your interview."],
-[39,1,"What is the name of the Vice President of the United States now?",["JD Vance (as of early 2026)"],"This answer changes — verify the current vice president at uscis.gov/citizenship/testupdates before your interview."],
+[38,1,"What is the name of the President of the United States now?",["Visit uscis.gov/citizenship/testupdates for the name of the President of the United States."],"Answer with the official serving at the time of your interview — Donald Trump as of early 2026."],
+[39,1,"What is the name of the Vice President of the United States now?",["Visit uscis.gov/citizenship/testupdates for the name of the Vice President of the United States."],"Answer with the official serving at the time of your interview — JD Vance as of early 2026."],
 [40,1,"If the president can no longer serve, who becomes president?",["The Vice President (of the United States)"]],
 [41,1,"If both the president and the vice president can no longer serve, who becomes president?",["The Speaker of the House (of Representatives)"]],
 [42,1,"Who is the Commander in Chief of the U.S. military?",["The President (of the United States)"]],
@@ -345,19 +348,19 @@ const CARDS = [
 [50,1,"What is one part of the judicial branch?",["Supreme Court","Federal Courts"]],
 [51,1,"What does the judicial branch do?",["Reviews laws","Explains laws","Resolves disputes (disagreements) about the law","Decides if a law goes against the (U.S.) Constitution"]],
 [52,1,"What is the highest court in the United States?",["Supreme Court"]],
-[53,1,"How many seats are on the Supreme Court?",["Nine (9)"],"USCIS notes this number can change — verify at uscis.gov/citizenship/testupdates."],
+[53,1,"How many seats are on the Supreme Court?",["Nine (9)","Visit uscis.gov/citizenship/testupdates for the number of justices on the Supreme Court."]],
 [54,1,"How many Supreme Court justices are usually needed to decide a case?",["Five (5)"]],
 [55,1,"How long do Supreme Court justices serve?",["(For) life","Lifetime appointment","(Until) retirement"]],
 [56,1,"Supreme Court justices serve for life. Why?",["To be independent (of politics)","To limit outside (political) influence"]],
-[57,1,"Who is the Chief Justice of the United States now?",["John Roberts (John G. Roberts, Jr.)"],"This answer changes — verify the current chief justice at uscis.gov/citizenship/testupdates before your interview."],
+[57,1,"Who is the Chief Justice of the United States now?",["Visit uscis.gov/citizenship/testupdates for the name of the Chief Justice of the United States."],"Answer with the official serving at the time of your interview — John Roberts (John G. Roberts, Jr.) as of early 2026."],
 [58,1,"Name one power that is only for the federal government.",["Print paper money","Mint coins","Declare war","Create an army","Make treaties","Set foreign policy"]],
 [59,1,"Name one power that is only for the states.",["Provide schooling and education","Provide protection (police)","Provide safety (fire departments)","Give a driver’s license","Approve zoning and land use"]],
 [60,1,"What is the purpose of the 10th Amendment?",["(It states that the) powers not given to the federal government belong to the states or to the people."]],
-[61,1,"Who is the governor of your state now?",["Answers will vary."],"D.C. residents: answer that D.C. does not have a governor. Territory residents: name your territory’s governor."],
-[62,1,"What is the capital of your state?",["Answers will vary."],"D.C. residents: answer that D.C. is not a state and does not have a capital. Territory residents: name your territory’s capital."],
+[61,1,"Who is the governor of your state now?",["Answers will vary.","[District of Columbia residents should answer that D.C. does not have a Governor.]"]],
+[62,1,"What is the capital of your state?",["Answers will vary.","[District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]"]],
 [63,2,"There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",["Citizens eighteen (18) and older (can vote).","You don’t have to pay (a poll tax) to vote.","Any citizen can vote. (Women and men can vote.)","A male citizen of any race (can vote)."]],
 [64,2,"Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",["Citizens","Citizens of the United States","U.S. citizens"]],
-[65,2,"What are three rights of everyone living in the United States?",["Freedom of expression","Freedom of speech","Freedom of assembly","Freedom to petition the government","Freedom of religion","The right to bear arms"],"Be ready to name three of these."],
+[65,2,"What are three rights of everyone living in the United States?",["Freedom of expression","Freedom of speech","Freedom of assembly","Freedom to petition the government","Freedom of religion","The right to bear arms"]],
 [66,2,"What do we show loyalty to when we say the Pledge of Allegiance?",["The United States","The flag"]],
 [67,2,"Name two promises that new citizens make in the Oath of Allegiance.",["Give up loyalty to other countries","Defend the (U.S.) Constitution","Obey the laws of the United States","Serve in the military (if needed)","Serve (help, do important work for) the nation (if needed)","Be loyal to the United States"]],
 [68,2,"How can people become United States citizens?",["Naturalize","Derive citizenship","Be born in the United States"]],
@@ -373,7 +376,7 @@ const CARDS = [
 [78,3,"Who wrote the Declaration of Independence?",["(Thomas) Jefferson"]],
 [79,3,"When was the Declaration of Independence adopted?",["July 4, 1776"]],
 [80,3,"The American Revolution had many important events. Name one.",["(Battle of) Bunker Hill","Declaration of Independence","Washington Crossing the Delaware (Battles of Trenton and Princeton)","(Battle of) Saratoga","Valley Forge (Encampment)","(Battle of) Yorktown (British surrender at Yorktown)"]],
-[81,3,"There were 13 original states. Name five.",["New Hampshire","Massachusetts","Rhode Island","Connecticut","New York","New Jersey","Pennsylvania","Delaware","Maryland","Virginia","North Carolina","South Carolina","Georgia"],"Be ready to name five of these."],
+[81,3,"There were 13 original states. Name five.",["New Hampshire","Massachusetts","Rhode Island","Connecticut","New York","New Jersey","Pennsylvania","Delaware","Maryland","Virginia","North Carolina","South Carolina","Georgia"]],
 [82,3,"What founding document was written in 1787?",["(U.S.) Constitution"]],
 [83,3,"The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",["(Alexander) Hamilton","(James) Madison","(John) Jay","Publius"]],
 [84,3,"Why were the Federalist Papers important?",["They helped people understand the (U.S.) Constitution.","They supported passing the (U.S.) Constitution."]],
@@ -399,7 +402,7 @@ const CARDS = [
 [104,5,"When did the Great Depression start?",["The Great Crash (1929)","Stock market crash of 1929"]],
 [105,5,"Who was president during the Great Depression and World War II?",["(Franklin) Roosevelt"]],
 [106,5,"Why did the United States enter World War II?",["(Bombing of) Pearl Harbor","Japanese attacked Pearl Harbor","To support the Allied Powers (England, France, and Russia)","To oppose the Axis Powers (Germany, Italy, and Japan)"]],
-[107,5,"Dwight Eisenhower is famous for many things. Name one.",["General during World War II","President at the end of (during) the Korean War","34th president of the United States","Signed the Federal-Aid Highway Act of 1956 (created the Interstate System)"]],
+[107,5,"Dwight Eisenhower is famous for many things. Name one.",["General during World War II","President at the end of (during) the Korean War","34th president of the United States","Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"]],
 [108,5,"Who was the United States’ main rival during the Cold War?",["Soviet Union","USSR","Russia"]],
 [109,5,"During the Cold War, what was one main concern of the United States?",["Communism","Nuclear war"]],
 [110,5,"Why did the United States enter the Korean War?",["To stop the spread of communism"]],
@@ -409,16 +412,16 @@ const CARDS = [
 [114,5,"Why did the United States enter the Persian Gulf War?",["To force the Iraqi military from Kuwait"]],
 [115,5,"What major event happened on September 11, 2001, in the United States?",["Terrorists attacked the United States","Terrorists took over two planes and crashed them into the World Trade Center in New York City","Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia","Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"]],
 [116,5,"Name one U.S. military conflict after the September 11, 2001 attacks.",["(Global) War on Terror","War in Afghanistan","War in Iraq"]],
-[117,5,"Name one American Indian tribe in the United States.",["Apache","Blackfeet","Cayuga","Cherokee","Cheyenne","Chippewa","Choctaw","Creek","Crow","Hopi","Huron","Inupiat","Lakota","Mohawk","Mohegan","Navajo","Oneida","Onondaga","Pueblo","Seminole","Seneca","Shawnee","Sioux","Teton","Tuscarora"],"For a complete list of tribes, visit bia.gov."],
+[117,5,"Name one American Indian tribe in the United States.",["Apache","Blackfeet","Cayuga","Cherokee","Cheyenne","Chippewa","Choctaw","Creek","Crow","Hopi","Huron","Inupiat","Lakota","Mohawk","Mohegan","Navajo","Oneida","Onondaga","Pueblo","Seminole","Seneca","Shawnee","Sioux","Teton","Tuscarora","[For a complete list of tribes, please visit bia.gov.]"]],
 [118,5,"Name one example of an American innovation.",["Light bulb","Automobile (cars, internal combustion engine)","Skyscrapers","Airplane","Assembly line","Landing on the moon","Integrated circuit (IC)"]],
 [119,6,"What is the capital of the United States?",["Washington, D.C."]],
-[120,6,"Where is the Statue of Liberty?",["New York (Harbor)","Liberty Island"],"Also acceptable: New Jersey, near New York City, and on the Hudson (River)."],
+[120,6,"Where is the Statue of Liberty?",["New York (Harbor)","Liberty Island","[Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"]],
 [121,6,"Why does the flag have 13 stripes?",["(Because there were) 13 original colonies","(Because the stripes) represent the original colonies"]],
 [122,6,"Why does the flag have 50 stars?",["(Because there is) one star for each state","(Because) each star represents a state","(Because there are) 50 states"]],
 [123,6,"What is the name of the national anthem?",["The Star-Spangled Banner"]],
 [124,6,"The Nation’s first motto was “E Pluribus Unum.” What does that mean?",["Out of many, one","We all become one"]],
 [125,7,"What is Independence Day?",["A holiday to celebrate U.S. independence (from Britain)","The country’s birthday"]],
-[126,7,"Name three national U.S. holidays.",["New Year’s Day","Martin Luther King, Jr. Day","Presidents Day (Washington’s Birthday)","Memorial Day","Juneteenth","Independence Day","Labor Day","Columbus Day","Veterans Day","Thanksgiving Day","Christmas Day"],"Be ready to name three of these."],
+[126,7,"Name three national U.S. holidays.",["New Year’s Day","Martin Luther King, Jr. Day","Presidents Day (Washington’s Birthday)","Memorial Day","Juneteenth","Independence Day","Labor Day","Columbus Day","Veterans Day","Thanksgiving Day","Christmas Day"]],
 [127,7,"What is Memorial Day?",["A holiday to honor soldiers who died in military service"]],
 [128,7,"What is Veterans Day?",["A holiday to honor people in the (U.S.) military","A holiday to honor people who have served (in the U.S. military)"]]
 ];
@@ -517,6 +520,7 @@ function render() {
   card[3].forEach(a => {
     const li = document.createElement("li");
     li.textContent = a;
+    if (a.startsWith("[")) li.className = "bracket";
     ul.appendChild(li);
   });
 
@@ -526,7 +530,7 @@ function render() {
     const d = document.createElement("span");
     d.className = "note";
     d.style.display = "block";
-    d.textContent = card[4];
+    d.textContent = "Study note (not part of the official answer): " + card[4];
     noteEl.appendChild(d);
   }
 
