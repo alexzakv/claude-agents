@@ -1,0 +1,604 @@
+<title>Civics 128 Flashcards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --paper: #f4f5f2;
+    --card: #fdfdfb;
+    --card-back: #f7f6ef;
+    --ink: #1d2433;
+    --ink-soft: #4c5568;
+    --ink-faint: #878fa0;
+    --line: #d8dad2;
+    --accent: #2e4a76;
+    --accent-ink: #ffffff;
+    --known: #3d7052;
+    --known-soft: #e3efe7;
+    --flag: #9e3f38;
+    --flag-soft: #f5e6e4;
+    --shadow: 0 1px 2px rgba(29,36,51,.08), 0 8px 28px rgba(29,36,51,.09);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12161f;
+      --card: #1c2230;
+      --card-back: #202839;
+      --ink: #e7e8e3;
+      --ink-soft: #aab1c0;
+      --ink-faint: #6d7486;
+      --line: #313a4d;
+      --accent: #7d9cc9;
+      --accent-ink: #12161f;
+      --known: #7cbb96;
+      --known-soft: #22352b;
+      --flag: #d98a83;
+      --flag-soft: #3d2624;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12161f;
+    --card: #1c2230;
+    --card-back: #202839;
+    --ink: #e7e8e3;
+    --ink-soft: #aab1c0;
+    --ink-faint: #6d7486;
+    --line: #313a4d;
+    --accent: #7d9cc9;
+    --accent-ink: #12161f;
+    --known: #7cbb96;
+    --known-soft: #22352b;
+    --flag: #d98a83;
+    --flag-soft: #3d2624;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  .wrap {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .serif { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; }
+
+  header .eyebrow {
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 .35rem;
+  }
+  header h1 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 600;
+    margin: 0;
+    text-wrap: balance;
+  }
+  header .sub { color: var(--ink-soft); font-size: .92rem; margin: .4rem 0 0; }
+
+  .progress { display: flex; flex-direction: column; gap: .35rem; }
+  .progress .row { display: flex; justify-content: space-between; font-size: .8rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .bar > div { height: 100%; background: var(--known); border-radius: 3px; width: 0; transition: width .3s ease; }
+
+  .toolbar {
+    display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center;
+    font-size: .85rem;
+  }
+  .toolbar select {
+    font: inherit; color: var(--ink); background: var(--card);
+    border: 1px solid var(--line); border-radius: 6px; padding: .35rem .5rem;
+    max-width: 100%;
+  }
+  .toolbar label.check { display: inline-flex; align-items: center; gap: .35rem; color: var(--ink-soft); cursor: pointer; }
+  .toolbar input[type="checkbox"] { accent-color: var(--accent); }
+  .toolbar .spacer { flex: 1; }
+
+  .scene { perspective: 1600px; }
+  .card {
+    position: relative;
+    width: 100%;
+    min-height: 21rem;
+    border: 0; padding: 0; margin: 0;
+    background: transparent; color: inherit;
+    text-align: left; cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform .45s cubic-bezier(.35,0,.25,1);
+    font: inherit;
+  }
+  .card:focus-visible { outline: none; }
+  .card:focus-visible .face { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .card.flipped { transform: rotateY(180deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+    .bar > div { transition: none; }
+  }
+  .face {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    backface-visibility: hidden;
+    overflow-y: auto;
+  }
+  .face.back { transform: rotateY(180deg); background: var(--card-back); }
+
+  .face .top {
+    display: flex; align-items: baseline; gap: .75rem;
+    font-size: .72rem; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+  .face .top .num { color: var(--accent); font-weight: 700; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+  .face .top .badges { margin-left: auto; display: flex; gap: .4rem; letter-spacing: .08em; }
+  .badge { border-radius: 999px; padding: .12rem .55rem; font-weight: 600; }
+  .badge.known { background: var(--known-soft); color: var(--known); }
+  .badge.flag { background: var(--flag-soft); color: var(--flag); }
+
+  .question {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.55rem);
+    line-height: 1.35;
+    text-wrap: balance;
+    margin: auto 0;
+    padding-bottom: 1.5rem;
+  }
+  .face .hint { font-size: .78rem; color: var(--ink-faint); margin-top: auto; }
+
+  .answers-label {
+    font-size: .72rem; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: .6rem;
+  }
+  ul.answers {
+    margin: 0; padding: 0; list-style: none;
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: 1.02rem;
+    display: flex; flex-direction: column; gap: .35rem;
+  }
+  ul.answers li { padding-left: 1.1rem; position: relative; }
+  ul.answers li::before {
+    content: ""; position: absolute; left: 0; top: .55em;
+    width: .45em; height: .45em; border-radius: 50%;
+    background: var(--accent); opacity: .55;
+  }
+  ul.answers.long { columns: 2; column-gap: 2rem; display: block; }
+  ul.answers.long li { margin-bottom: .3rem; break-inside: avoid; }
+  @media (max-width: 540px) { ul.answers.long { columns: 1; } }
+  .note {
+    margin-top: 1rem; padding: .6rem .8rem;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    font-size: .84rem; color: var(--ink-soft);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .controls { display: flex; flex-direction: column; gap: .75rem; }
+  .controls .pos { text-align: center; font-size: .8rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .btnrow { display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap; }
+  button.btn {
+    font: inherit; font-size: .88rem; font-weight: 600;
+    color: var(--ink); background: var(--card);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: .5rem 1rem; cursor: pointer;
+  }
+  button.btn:hover { border-color: var(--accent); }
+  button.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button.btn.knowbtn.active { background: var(--known-soft); color: var(--known); border-color: var(--known); }
+  button.btn.flagbtn.active { background: var(--flag-soft); color: var(--flag); border-color: var(--flag); }
+
+  .empty {
+    border: 1px dashed var(--line); border-radius: 12px;
+    padding: 3rem 1.5rem; text-align: center; color: var(--ink-soft);
+  }
+
+  .keys { text-align: center; font-size: .75rem; color: var(--ink-faint); }
+  .keys kbd {
+    font-family: inherit; border: 1px solid var(--line); border-radius: 4px;
+    padding: 0 .3rem; background: var(--card);
+  }
+
+  footer { border-top: 1px solid var(--line); padding-top: 1rem; font-size: .78rem; color: var(--ink-faint); display: flex; flex-direction: column; gap: .5rem; }
+  footer a { color: var(--accent); }
+  footer button.linklike {
+    font: inherit; color: var(--flag); background: none; border: none;
+    padding: 0; cursor: pointer; text-decoration: underline; align-self: flex-start;
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Naturalization Test · 2025 Civics Test</p>
+    <h1>Civics 128 Flashcards</h1>
+    <p class="sub">All 128 official questions for N-400 applications filed on or after October 20, 2025. At the interview, the officer asks 20 of these — answer 12 correctly to pass.</p>
+  </header>
+
+  <div class="progress">
+    <div class="row"><span id="prog-label">0 of 128 marked known</span><span id="prog-pct">0%</span></div>
+    <div class="bar"><div id="prog-fill"></div></div>
+  </div>
+
+  <div class="toolbar">
+    <select id="section" aria-label="Filter by section"></select>
+    <label class="check"><input type="checkbox" id="hide-known"> Hide known</label>
+    <label class="check"><input type="checkbox" id="only-flagged"> Flagged only</label>
+    <span class="spacer"></span>
+    <button class="btn" id="shuffle" type="button">Shuffle</button>
+  </div>
+
+  <div class="scene" id="scene">
+    <div class="card" id="card" tabindex="0" role="button" aria-label="Flashcard, press Enter or Space to flip">
+      <span class="face front">
+        <span class="top"><span class="num" id="f-num"></span><span id="f-sec"></span><span class="badges" id="f-badges"></span></span>
+        <span class="question serif" id="f-q"></span>
+        <span class="hint">Tap or press space to reveal the answer</span>
+      </span>
+      <span class="face back">
+        <span class="top"><span class="num" id="b-num"></span><span class="badges" id="b-badges"></span></span>
+        <span class="answers-label" id="b-label">Official answers</span>
+        <ul class="answers" id="b-answers"></ul>
+        <span id="b-note"></span>
+      </span>
+    </div>
+  </div>
+  <div class="empty" id="empty" hidden>No cards match these filters. Untick a filter or reset your progress below.</div>
+
+  <div class="controls">
+    <p class="pos" id="pos"></p>
+    <div class="btnrow">
+      <button class="btn" id="prev" type="button">← Back</button>
+      <button class="btn primary" id="flip" type="button">Flip</button>
+      <button class="btn" id="next" type="button">Next →</button>
+    </div>
+    <div class="btnrow">
+      <button class="btn knowbtn" id="know" type="button">✓ I know this</button>
+      <button class="btn flagbtn" id="flag" type="button">⚑ Review again</button>
+    </div>
+    <p class="keys"><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>Space</kbd> flip · <kbd>K</kbd> known · <kbd>F</kbd> flag</p>
+  </div>
+
+  <footer>
+    <p>Source: USCIS, <em>128 Civics Questions and Answers (2025 version)</em>. Questions about current officeholders (marked on their cards) change over time — verify at <strong>uscis.gov/citizenship/testupdates</strong> before your interview. If you are 65 or older and have been a permanent resident for 20+ years, a shorter starred subset applies — see the official PDF.</p>
+    <p>Your progress is saved in this browser.</p>
+    <button class="linklike" id="reset" type="button">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+  "American Government · Principles of American Government",
+  "American Government · System of Government",
+  "American Government · Rights and Responsibilities",
+  "American History · Colonial Period and Independence",
+  "American History · 1800s",
+  "American History · Recent History",
+  "Symbols and Holidays · Symbols",
+  "Symbols and Holidays · Holidays"
+];
+
+// [number, sectionIndex, question, [answers], optional note]
+const CARDS = [
+[1,0,"What is the form of government of the United States?",["Republic","Constitution-based federal republic","Representative democracy"]],
+[2,0,"What is the supreme law of the land?",["(U.S.) Constitution"]],
+[3,0,"Name one thing the U.S. Constitution does.",["Forms the government","Defines powers of government","Defines the parts of government","Protects the rights of the people"]],
+[4,0,"The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?",["Self-government","Popular sovereignty","Consent of the governed","People should govern themselves","(Example of) social contract"]],
+[5,0,"How are changes made to the U.S. Constitution?",["Amendments","The amendment process"]],
+[6,0,"What does the Bill of Rights protect?",["(The basic) rights of Americans","(The basic) rights of people living in the United States"]],
+[7,0,"How many amendments does the U.S. Constitution have?",["Twenty-seven (27)"]],
+[8,0,"Why is the Declaration of Independence important?",["It says America is free from British control.","It says all people are created equal.","It identifies inherent rights.","It identifies individual freedoms."]],
+[9,0,"What founding document said the American colonies were free from Britain?",["Declaration of Independence"]],
+[10,0,"Name two important ideas from the Declaration of Independence and the U.S. Constitution.",["Equality","Liberty","Social contract","Natural rights","Limited government","Self-government"]],
+[11,0,"The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?",["Declaration of Independence"]],
+[12,0,"What is the economic system of the United States?",["Capitalism","Free market economy"]],
+[13,1,"What is the rule of law?",["Everyone must follow the law.","Leaders must obey the law.","Government must obey the law.","No one is above the law."]],
+[14,1,"Many documents influenced the U.S. Constitution. Name one.",["Declaration of Independence","Articles of Confederation","Federalist Papers","Anti-Federalist Papers","Virginia Declaration of Rights","Fundamental Orders of Connecticut","Mayflower Compact","Iroquois Great Law of Peace"]],
+[15,1,"There are three branches of government. Why?",["So one part does not become too powerful","Checks and balances","Separation of powers"]],
+[16,1,"Name the three branches of government.",["Legislative, executive, and judicial","Congress, president, the courts"]],
+[17,1,"The President of the United States is in charge of which branch of government?",["Executive branch"]],
+[18,1,"What part of the federal government writes laws?",["(U.S.) Congress","(U.S. or national) legislature","Legislative branch"]],
+[19,1,"What are the two parts of the U.S. Congress?",["Senate and House (of Representatives)"]],
+[20,1,"Name one power of the U.S. Congress.",["Writes laws","Declares war","Makes the federal budget"]],
+[21,1,"How many U.S. senators are there?",["One hundred (100)"]],
+[22,1,"How long is a term for a U.S. senator?",["Six (6) years"]],
+[23,1,"Who is one of your state’s U.S. senators now?",["Answers will vary."],"Residents of the District of Columbia or U.S. territories: answer that D.C. (or your territory) has no U.S. senators. Look up your two senators at senate.gov."],
+[24,1,"How many voting members are in the House of Representatives?",["Four hundred thirty-five (435)"],"USCIS notes this number can change — verify at uscis.gov/citizenship/testupdates."],
+[25,1,"How long is a term for a member of the House of Representatives?",["Two (2) years"]],
+[26,1,"Why do U.S. representatives serve shorter terms than U.S. senators?",["To more closely follow public opinion"]],
+[27,1,"How many senators does each state have?",["Two (2)"]],
+[28,1,"Why does each state have two senators?",["Equal representation (for small states)","The Great Compromise (Connecticut Compromise)"]],
+[29,1,"Name your U.S. representative.",["Answers will vary."],"Residents of territories with nonvoting delegates or resident commissioners may name that delegate or commissioner. Find yours at house.gov."],
+[30,1,"What is the name of the Speaker of the House of Representatives now?",["Mike Johnson (as of early 2026)"],"This answer changes — verify the current Speaker at uscis.gov/citizenship/testupdates before your interview."],
+[31,1,"Who does a U.S. senator represent?",["Citizens of their state"]],
+[32,1,"Who elects U.S. senators?",["Citizens from their state"]],
+[33,1,"Who does a member of the House of Representatives represent?",["Citizens in their (congressional) district","Citizens in their district"]],
+[34,1,"Who elects members of the House of Representatives?",["Citizens from their (congressional) district"]],
+[35,1,"Some states have more representatives than other states. Why?",["(Because of) the state’s population","(Because) they have more people","(Because) some states have more people"]],
+[36,1,"The President of the United States is elected for how many years?",["Four (4) years"]],
+[37,1,"The President of the United States can serve only two terms. Why?",["(Because of) the 22nd Amendment","To keep the president from becoming too powerful"]],
+[38,1,"What is the name of the President of the United States now?",["Donald Trump (as of early 2026)"],"This answer changes — verify the current president at uscis.gov/citizenship/testupdates before your interview."],
+[39,1,"What is the name of the Vice President of the United States now?",["JD Vance (as of early 2026)"],"This answer changes — verify the current vice president at uscis.gov/citizenship/testupdates before your interview."],
+[40,1,"If the president can no longer serve, who becomes president?",["The Vice President (of the United States)"]],
+[41,1,"If both the president and the vice president can no longer serve, who becomes president?",["The Speaker of the House (of Representatives)"]],
+[42,1,"Who is the Commander in Chief of the U.S. military?",["The President (of the United States)"]],
+[43,1,"Who signs bills to become laws?",["The President (of the United States)"]],
+[44,1,"Who vetoes bills?",["The President (of the United States)"]],
+[45,1,"Who appoints federal judges?",["The President (of the United States)"]],
+[46,1,"The executive branch has many parts. Name one.",["President (of the United States)","Cabinet","Federal departments and agencies"]],
+[47,1,"What does the President’s Cabinet do?",["Advises the President (of the United States)"]],
+[48,1,"What are two Cabinet-level positions?",["Attorney General","Secretary of Agriculture","Secretary of Commerce","Secretary of Defense","Secretary of Education","Secretary of Energy","Secretary of Health and Human Services","Secretary of Homeland Security","Secretary of Housing and Urban Development","Secretary of the Interior","Secretary of Labor","Secretary of State","Secretary of Transportation","Secretary of the Treasury","Secretary of Veterans Affairs","Vice President (of the United States)"]],
+[49,1,"Why is the Electoral College important?",["It decides who is elected president.","It provides a compromise between the popular election of the president and congressional selection."]],
+[50,1,"What is one part of the judicial branch?",["Supreme Court","Federal Courts"]],
+[51,1,"What does the judicial branch do?",["Reviews laws","Explains laws","Resolves disputes (disagreements) about the law","Decides if a law goes against the (U.S.) Constitution"]],
+[52,1,"What is the highest court in the United States?",["Supreme Court"]],
+[53,1,"How many seats are on the Supreme Court?",["Nine (9)"],"USCIS notes this number can change — verify at uscis.gov/citizenship/testupdates."],
+[54,1,"How many Supreme Court justices are usually needed to decide a case?",["Five (5)"]],
+[55,1,"How long do Supreme Court justices serve?",["(For) life","Lifetime appointment","(Until) retirement"]],
+[56,1,"Supreme Court justices serve for life. Why?",["To be independent (of politics)","To limit outside (political) influence"]],
+[57,1,"Who is the Chief Justice of the United States now?",["John Roberts (John G. Roberts, Jr.)"],"This answer changes — verify the current chief justice at uscis.gov/citizenship/testupdates before your interview."],
+[58,1,"Name one power that is only for the federal government.",["Print paper money","Mint coins","Declare war","Create an army","Make treaties","Set foreign policy"]],
+[59,1,"Name one power that is only for the states.",["Provide schooling and education","Provide protection (police)","Provide safety (fire departments)","Give a driver’s license","Approve zoning and land use"]],
+[60,1,"What is the purpose of the 10th Amendment?",["(It states that the) powers not given to the federal government belong to the states or to the people."]],
+[61,1,"Who is the governor of your state now?",["Answers will vary."],"D.C. residents: answer that D.C. does not have a governor. Territory residents: name your territory’s governor."],
+[62,1,"What is the capital of your state?",["Answers will vary."],"D.C. residents: answer that D.C. is not a state and does not have a capital. Territory residents: name your territory’s capital."],
+[63,2,"There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",["Citizens eighteen (18) and older (can vote).","You don’t have to pay (a poll tax) to vote.","Any citizen can vote. (Women and men can vote.)","A male citizen of any race (can vote)."]],
+[64,2,"Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",["Citizens","Citizens of the United States","U.S. citizens"]],
+[65,2,"What are three rights of everyone living in the United States?",["Freedom of expression","Freedom of speech","Freedom of assembly","Freedom to petition the government","Freedom of religion","The right to bear arms"],"Be ready to name three of these."],
+[66,2,"What do we show loyalty to when we say the Pledge of Allegiance?",["The United States","The flag"]],
+[67,2,"Name two promises that new citizens make in the Oath of Allegiance.",["Give up loyalty to other countries","Defend the (U.S.) Constitution","Obey the laws of the United States","Serve in the military (if needed)","Serve (help, do important work for) the nation (if needed)","Be loyal to the United States"]],
+[68,2,"How can people become United States citizens?",["Naturalize","Derive citizenship","Be born in the United States"]],
+[69,2,"What are two examples of civic participation in the United States?",["Vote","Run for office","Join a political party","Help with a campaign","Join a civic group","Join a community group","Give an elected official your opinion (on an issue)","Contact elected officials","Support or oppose an issue or policy","Write to a newspaper"]],
+[70,2,"What is one way Americans can serve their country?",["Vote","Pay taxes","Obey the law","Serve in the military","Run for office","Work for local, state, or federal government"]],
+[71,2,"Why is it important to pay federal taxes?",["Required by law","All people pay to fund the federal government","Required by the (U.S.) Constitution (16th Amendment)","Civic duty"]],
+[72,2,"It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.",["Required by law","Civic duty","Makes the draft fair, if needed"]],
+[73,3,"The colonists came to America for many reasons. Name one.",["Freedom","Political liberty","Religious freedom","Economic opportunity","Escape persecution"]],
+[74,3,"Who lived in America before the Europeans arrived?",["American Indians","Native Americans"]],
+[75,3,"What group of people was taken and sold as slaves?",["Africans","People from Africa"]],
+[76,3,"What war did the Americans fight to win independence from Britain?",["American Revolution","The (American) Revolutionary War","War for (American) Independence"]],
+[77,3,"Name one reason why the Americans declared independence from Britain.",["High taxes","Taxation without representation","British soldiers stayed in Americans’ houses (boarding, quartering)","They did not have self-government","Boston Massacre","Boston Tea Party (Tea Act)","Stamp Act","Sugar Act","Townshend Acts","Intolerable (Coercive) Acts"]],
+[78,3,"Who wrote the Declaration of Independence?",["(Thomas) Jefferson"]],
+[79,3,"When was the Declaration of Independence adopted?",["July 4, 1776"]],
+[80,3,"The American Revolution had many important events. Name one.",["(Battle of) Bunker Hill","Declaration of Independence","Washington Crossing the Delaware (Battles of Trenton and Princeton)","(Battle of) Saratoga","Valley Forge (Encampment)","(Battle of) Yorktown (British surrender at Yorktown)"]],
+[81,3,"There were 13 original states. Name five.",["New Hampshire","Massachusetts","Rhode Island","Connecticut","New York","New Jersey","Pennsylvania","Delaware","Maryland","Virginia","North Carolina","South Carolina","Georgia"],"Be ready to name five of these."],
+[82,3,"What founding document was written in 1787?",["(U.S.) Constitution"]],
+[83,3,"The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",["(Alexander) Hamilton","(James) Madison","(John) Jay","Publius"]],
+[84,3,"Why were the Federalist Papers important?",["They helped people understand the (U.S.) Constitution.","They supported passing the (U.S.) Constitution."]],
+[85,3,"Benjamin Franklin is famous for many things. Name one.",["Founded the first free public libraries","First Postmaster General of the United States","Helped write the Declaration of Independence","Inventor","U.S. diplomat"]],
+[86,3,"George Washington is famous for many things. Name one.",["“Father of Our Country”","First president of the United States","General of the Continental Army","President of the Constitutional Convention"]],
+[87,3,"Thomas Jefferson is famous for many things. Name one.",["Writer of the Declaration of Independence","Third president of the United States","Doubled the size of the United States (Louisiana Purchase)","First Secretary of State","Founded the University of Virginia","Writer of the Virginia Statute on Religious Freedom"]],
+[88,3,"James Madison is famous for many things. Name one.",["“Father of the Constitution”","Fourth president of the United States","President during the War of 1812","One of the writers of the Federalist Papers"]],
+[89,3,"Alexander Hamilton is famous for many things. Name one.",["First Secretary of the Treasury","One of the writers of the Federalist Papers","Helped establish the First Bank of the United States","Aide to General George Washington","Member of the Continental Congress"]],
+[90,4,"What territory did the United States buy from France in 1803?",["Louisiana Territory","Louisiana"]],
+[91,4,"Name one war fought by the United States in the 1800s.",["War of 1812","Mexican-American War","Civil War","Spanish-American War"]],
+[92,4,"Name the U.S. war between the North and the South.",["The Civil War"]],
+[93,4,"The Civil War had many important events. Name one.",["(Battle of) Fort Sumter","Emancipation Proclamation","(Battle of) Vicksburg","(Battle of) Gettysburg","Sherman’s March","(Surrender at) Appomattox","(Battle of) Antietam (Sharpsburg)","Lincoln was assassinated."]],
+[94,4,"Abraham Lincoln is famous for many things. Name one.",["Freed the slaves (Emancipation Proclamation)","Saved (or preserved) the Union","Led the United States during the Civil War","16th president of the United States","Delivered the Gettysburg Address"]],
+[95,4,"What did the Emancipation Proclamation do?",["Freed the slaves","Freed slaves in the Confederacy","Freed slaves in the Confederate states","Freed slaves in most Southern states"]],
+[96,4,"What U.S. war ended slavery?",["The Civil War"]],
+[97,4,"What amendment gives citizenship to all persons born in the United States?",["14th Amendment"]],
+[98,4,"When did all men get the right to vote?",["After the Civil War","During Reconstruction","(With the) 15th Amendment","1870"]],
+[99,4,"Name one leader of the women’s rights movement in the 1800s.",["Susan B. Anthony","Elizabeth Cady Stanton","Sojourner Truth","Harriet Tubman","Lucretia Mott","Lucy Stone"]],
+[100,5,"Name one war fought by the United States in the 1900s.",["World War I","World War II","Korean War","Vietnam War","(Persian) Gulf War"]],
+[101,5,"Why did the United States enter World War I?",["Because Germany attacked U.S. (civilian) ships","To support the Allied Powers (England, France, Italy, and Russia)","To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)"]],
+[102,5,"When did all women get the right to vote?",["1920","After World War I","(With the) 19th Amendment"]],
+[103,5,"What was the Great Depression?",["Longest economic recession in modern history"]],
+[104,5,"When did the Great Depression start?",["The Great Crash (1929)","Stock market crash of 1929"]],
+[105,5,"Who was president during the Great Depression and World War II?",["(Franklin) Roosevelt"]],
+[106,5,"Why did the United States enter World War II?",["(Bombing of) Pearl Harbor","Japanese attacked Pearl Harbor","To support the Allied Powers (England, France, and Russia)","To oppose the Axis Powers (Germany, Italy, and Japan)"]],
+[107,5,"Dwight Eisenhower is famous for many things. Name one.",["General during World War II","President at the end of (during) the Korean War","34th president of the United States","Signed the Federal-Aid Highway Act of 1956 (created the Interstate System)"]],
+[108,5,"Who was the United States’ main rival during the Cold War?",["Soviet Union","USSR","Russia"]],
+[109,5,"During the Cold War, what was one main concern of the United States?",["Communism","Nuclear war"]],
+[110,5,"Why did the United States enter the Korean War?",["To stop the spread of communism"]],
+[111,5,"Why did the United States enter the Vietnam War?",["To stop the spread of communism"]],
+[112,5,"What did the civil rights movement do?",["Fought to end racial discrimination"]],
+[113,5,"Martin Luther King, Jr. is famous for many things. Name one.",["Fought for civil rights","Worked for equality for all Americans","Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”"]],
+[114,5,"Why did the United States enter the Persian Gulf War?",["To force the Iraqi military from Kuwait"]],
+[115,5,"What major event happened on September 11, 2001, in the United States?",["Terrorists attacked the United States","Terrorists took over two planes and crashed them into the World Trade Center in New York City","Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia","Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"]],
+[116,5,"Name one U.S. military conflict after the September 11, 2001 attacks.",["(Global) War on Terror","War in Afghanistan","War in Iraq"]],
+[117,5,"Name one American Indian tribe in the United States.",["Apache","Blackfeet","Cayuga","Cherokee","Cheyenne","Chippewa","Choctaw","Creek","Crow","Hopi","Huron","Inupiat","Lakota","Mohawk","Mohegan","Navajo","Oneida","Onondaga","Pueblo","Seminole","Seneca","Shawnee","Sioux","Teton","Tuscarora"],"For a complete list of tribes, visit bia.gov."],
+[118,5,"Name one example of an American innovation.",["Light bulb","Automobile (cars, internal combustion engine)","Skyscrapers","Airplane","Assembly line","Landing on the moon","Integrated circuit (IC)"]],
+[119,6,"What is the capital of the United States?",["Washington, D.C."]],
+[120,6,"Where is the Statue of Liberty?",["New York (Harbor)","Liberty Island"],"Also acceptable: New Jersey, near New York City, and on the Hudson (River)."],
+[121,6,"Why does the flag have 13 stripes?",["(Because there were) 13 original colonies","(Because the stripes) represent the original colonies"]],
+[122,6,"Why does the flag have 50 stars?",["(Because there is) one star for each state","(Because) each star represents a state","(Because there are) 50 states"]],
+[123,6,"What is the name of the national anthem?",["The Star-Spangled Banner"]],
+[124,6,"The Nation’s first motto was “E Pluribus Unum.” What does that mean?",["Out of many, one","We all become one"]],
+[125,7,"What is Independence Day?",["A holiday to celebrate U.S. independence (from Britain)","The country’s birthday"]],
+[126,7,"Name three national U.S. holidays.",["New Year’s Day","Martin Luther King, Jr. Day","Presidents Day (Washington’s Birthday)","Memorial Day","Juneteenth","Independence Day","Labor Day","Columbus Day","Veterans Day","Thanksgiving Day","Christmas Day"],"Be ready to name three of these."],
+[127,7,"What is Memorial Day?",["A holiday to honor soldiers who died in military service"]],
+[128,7,"What is Veterans Day?",["A holiday to honor people in the (U.S.) military","A holiday to honor people who have served (in the U.S. military)"]]
+];
+
+const LS_KNOWN = "civics128.known";
+const LS_FLAG = "civics128.flagged";
+
+let known = new Set(JSON.parse(localStorage.getItem(LS_KNOWN) || "[]"));
+let flagged = new Set(JSON.parse(localStorage.getItem(LS_FLAG) || "[]"));
+let order = CARDS.map((_, i) => i);
+let deck = [];
+let pos = 0;
+let flippedState = false;
+
+const $ = id => document.getElementById(id);
+
+const sectionSel = $("section");
+const optAll = document.createElement("option");
+optAll.value = "-1";
+optAll.textContent = "All sections (128)";
+sectionSel.appendChild(optAll);
+SECTIONS.forEach((s, i) => {
+  const count = CARDS.filter(c => c[1] === i).length;
+  const o = document.createElement("option");
+  o.value = String(i);
+  o.textContent = s + " (" + count + ")";
+  sectionSel.appendChild(o);
+});
+
+function save() {
+  localStorage.setItem(LS_KNOWN, JSON.stringify([...known]));
+  localStorage.setItem(LS_FLAG, JSON.stringify([...flagged]));
+}
+
+function rebuildDeck(keepCard) {
+  const sec = parseInt(sectionSel.value, 10);
+  const hideKnown = $("hide-known").checked;
+  const onlyFlagged = $("only-flagged").checked;
+  deck = order.filter(i => {
+    const c = CARDS[i];
+    if (sec >= 0 && c[1] !== sec) return false;
+    if (hideKnown && known.has(c[0])) return false;
+    if (onlyFlagged && !flagged.has(c[0])) return false;
+    return true;
+  });
+  if (keepCard !== undefined) {
+    const idx = deck.indexOf(keepCard);
+    pos = idx >= 0 ? idx : Math.min(pos, Math.max(deck.length - 1, 0));
+  } else {
+    pos = Math.min(pos, Math.max(deck.length - 1, 0));
+  }
+  render();
+}
+
+function badges(card, el) {
+  el.innerHTML = "";
+  if (known.has(card[0])) {
+    const b = document.createElement("span");
+    b.className = "badge known"; b.textContent = "known";
+    el.appendChild(b);
+  }
+  if (flagged.has(card[0])) {
+    const b = document.createElement("span");
+    b.className = "badge flag"; b.textContent = "review";
+    el.appendChild(b);
+  }
+}
+
+function render() {
+  const knownCount = known.size;
+  $("prog-label").textContent = knownCount + " of 128 marked known";
+  $("prog-pct").textContent = Math.round(knownCount / 128 * 100) + "%";
+  $("prog-fill").style.width = (knownCount / 128 * 100) + "%";
+
+  const has = deck.length > 0;
+  $("scene").hidden = !has;
+  $("empty").hidden = has;
+  ["prev","next","flip","know","flag"].forEach(id => $(id).disabled = !has);
+  if (!has) { $("pos").textContent = "0 cards"; return; }
+
+  const card = CARDS[deck[pos]];
+  $("f-num").textContent = "Nº " + card[0];
+  $("f-sec").textContent = SECTIONS[card[1]];
+  $("f-q").textContent = card[2];
+  $("b-num").textContent = "Nº " + card[0];
+  const asksSeveral = /\b(two|three|five)\b/i.test(card[2]);
+  $("b-label").textContent = card[3].length > 1
+    ? (asksSeveral ? "Official answers" : "Official answers — any one is acceptable")
+    : "Official answer";
+  badges(card, $("f-badges"));
+  badges(card, $("b-badges"));
+
+  const ul = $("b-answers");
+  ul.innerHTML = "";
+  ul.classList.toggle("long", card[3].length > 8);
+  card[3].forEach(a => {
+    const li = document.createElement("li");
+    li.textContent = a;
+    ul.appendChild(li);
+  });
+
+  const noteEl = $("b-note");
+  noteEl.innerHTML = "";
+  if (card[4]) {
+    const d = document.createElement("span");
+    d.className = "note";
+    d.style.display = "block";
+    d.textContent = card[4];
+    noteEl.appendChild(d);
+  }
+
+  $("pos").textContent = "Card " + (pos + 1) + " of " + deck.length;
+  $("know").classList.toggle("active", known.has(card[0]));
+  $("flag").classList.toggle("active", flagged.has(card[0]));
+
+  if (flippedState) { flippedState = false; $("card").classList.remove("flipped"); }
+}
+
+function flip() {
+  if (!deck.length) return;
+  flippedState = !flippedState;
+  $("card").classList.toggle("flipped", flippedState);
+}
+function move(d) {
+  if (!deck.length) return;
+  pos = (pos + d + deck.length) % deck.length;
+  render();
+}
+function toggleKnown() {
+  if (!deck.length) return;
+  const card = CARDS[deck[pos]];
+  const n = card[0];
+  if (known.has(n)) known.delete(n);
+  else { known.add(n); flagged.delete(n); }
+  save();
+  if ($("hide-known").checked && known.has(n)) { rebuildDeck(); } else { rebuildDeck(deck[pos]); }
+}
+function toggleFlag() {
+  if (!deck.length) return;
+  const card = CARDS[deck[pos]];
+  const n = card[0];
+  if (flagged.has(n)) flagged.delete(n);
+  else { flagged.add(n); known.delete(n); }
+  save();
+  if ($("only-flagged").checked && !flagged.has(n)) { rebuildDeck(); } else { rebuildDeck(deck[pos]); }
+}
+function shuffle() {
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  pos = 0;
+  rebuildDeck();
+}
+
+$("card").addEventListener("click", flip);
+$("flip").addEventListener("click", flip);
+$("prev").addEventListener("click", () => move(-1));
+$("next").addEventListener("click", () => move(1));
+$("know").addEventListener("click", toggleKnown);
+$("flag").addEventListener("click", toggleFlag);
+$("shuffle").addEventListener("click", shuffle);
+sectionSel.addEventListener("change", () => { pos = 0; rebuildDeck(); });
+$("hide-known").addEventListener("change", () => { pos = 0; rebuildDeck(); });
+$("only-flagged").addEventListener("change", () => { pos = 0; rebuildDeck(); });
+$("reset").addEventListener("click", () => {
+  if (confirm("Clear all known/review marks?")) {
+    known.clear(); flagged.clear(); save(); rebuildDeck();
+  }
+});
+
+document.addEventListener("keydown", e => {
+  if (e.target instanceof HTMLElement && /^(input|select|textarea)$/i.test(e.target.tagName)) return;
+  if (e.key === "ArrowLeft") { e.preventDefault(); move(-1); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); move(1); }
+  else if (e.key === " ") { e.preventDefault(); flip(); }
+  else if (e.key === "Enter" && e.target === $("card")) { e.preventDefault(); flip(); }
+  else if (e.key === "k" || e.key === "K") toggleKnown();
+  else if (e.key === "f" || e.key === "F") toggleFlag();
+});
+
+rebuildDeck();
+</script>
