@@ -608,24 +608,25 @@ function swipeOut(dir) {
   }, 220);
 }
 
-cardEl.addEventListener("pointerdown", e => {
-  if (animating || !deck.length || (e.pointerType === "mouse" && e.button !== 0)) return;
+function beginDrag(x, y) {
+  suppressTap = false;
+  if (animating || !deck.length) return;
   dragging = true; dragMoved = false; dragDX = 0;
-  startX = e.clientX; startY = e.clientY;
-  try { cardEl.setPointerCapture(e.pointerId); } catch (err) {}
-});
-cardEl.addEventListener("pointermove", e => {
-  if (!dragging) return;
-  const dx = e.clientX - startX, dy = e.clientY - startY;
+  startX = x; startY = y;
+}
+function moveDrag(x, y) {
+  if (!dragging) return false;
+  const dx = x - startX, dy = y - startY;
   if (!dragMoved) {
-    if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy)) return;
+    if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy)) return false;
     dragMoved = true;
     cardEl.classList.add("dragging");
   }
   dragDX = dx;
   setDragTransform(dx);
-});
-function endDrag() {
+  return true;
+}
+function finishDrag() {
   if (!dragging) return;
   dragging = false;
   cardEl.classList.remove("dragging");
@@ -635,11 +636,45 @@ function endDrag() {
   if (Math.abs(dragDX) > threshold) swipeOut(dragDX < 0 ? 1 : -1);
   else clearDragTransform();
 }
-cardEl.addEventListener("pointerup", endDrag);
-cardEl.addEventListener("pointercancel", () => {
+function cancelDrag() {
   dragging = false; dragMoved = false;
   cardEl.classList.remove("dragging");
   clearDragTransform();
+}
+
+// Touch devices (iOS Safari included): raw touch events, with preventDefault
+// once a horizontal drag is recognized so Safari doesn't hijack the gesture.
+cardEl.addEventListener("touchstart", e => {
+  if (e.touches.length !== 1) { cancelDrag(); return; }
+  const t = e.touches[0];
+  beginDrag(t.clientX, t.clientY);
+}, { passive: true });
+cardEl.addEventListener("touchmove", e => {
+  if (!dragging || e.touches.length !== 1) return;
+  const t = e.touches[0];
+  moveDrag(t.clientX, t.clientY);
+  if (dragMoved && e.cancelable) e.preventDefault();
+}, { passive: false });
+cardEl.addEventListener("touchend", finishDrag);
+cardEl.addEventListener("touchcancel", cancelDrag);
+
+// Mouse/pen drags on desktop (touch is handled above).
+cardEl.addEventListener("pointerdown", e => {
+  if (e.pointerType === "touch" || e.button !== 0) return;
+  beginDrag(e.clientX, e.clientY);
+  try { cardEl.setPointerCapture(e.pointerId); } catch (err) {}
+});
+cardEl.addEventListener("pointermove", e => {
+  if (e.pointerType === "touch") return;
+  moveDrag(e.clientX, e.clientY);
+});
+cardEl.addEventListener("pointerup", e => {
+  if (e.pointerType === "touch") return;
+  finishDrag();
+});
+cardEl.addEventListener("pointercancel", e => {
+  if (e.pointerType === "touch") return;
+  cancelDrag();
 });
 
 $("card").addEventListener("click", () => {
