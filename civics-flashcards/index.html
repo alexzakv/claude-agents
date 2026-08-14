@@ -115,9 +115,11 @@
     background: transparent; color: inherit;
     text-align: left; cursor: pointer;
     transform-style: preserve-3d;
-    transition: transform .45s cubic-bezier(.35,0,.25,1);
+    transition: transform .45s cubic-bezier(.35,0,.25,1), opacity .25s ease;
     font: inherit;
   }
+  .card { touch-action: pan-y; }
+  .card.dragging { transition: none; user-select: none; -webkit-user-select: none; }
   .card:focus-visible { outline: none; }
   .card:focus-visible .face { outline: 2px solid var(--accent); outline-offset: 3px; }
   .card.flipped { transform: rotateY(180deg); }
@@ -249,7 +251,7 @@
       <span class="face front">
         <span class="top"><span class="num" id="f-num"></span><span id="f-sec"></span><span class="badges" id="f-badges"></span></span>
         <span class="question serif" id="f-q"></span>
-        <span class="hint">Tap or press space to reveal the answer</span>
+        <span class="hint">Tap to reveal the answer · swipe left or right to change cards</span>
       </span>
       <span class="face back">
         <span class="top"><span class="num" id="b-num"></span><span class="badges" id="b-badges"></span></span>
@@ -578,7 +580,72 @@ function shuffle() {
   rebuildDeck();
 }
 
-$("card").addEventListener("click", flip);
+// Swipe left/right on the card to change cards; a plain tap still flips.
+const cardEl = $("card");
+let dragging = false, dragMoved = false, suppressTap = false;
+let startX = 0, startY = 0, dragDX = 0, animating = false;
+
+function setDragTransform(dx) {
+  cardEl.style.transform = "translateX(" + dx + "px) rotateZ(" + (dx * 0.02) + "deg)" + (flippedState ? " rotateY(180deg)" : "");
+  cardEl.style.opacity = String(Math.max(0.35, 1 - Math.abs(dx) / 600));
+}
+function clearDragTransform() {
+  cardEl.style.transform = "";
+  cardEl.style.opacity = "";
+}
+function swipeOut(dir) {
+  animating = true;
+  const w = cardEl.offsetWidth || 400;
+  setDragTransform(dir * -(w + 80));
+  setTimeout(() => {
+    cardEl.classList.add("dragging");
+    clearDragTransform();
+    move(dir);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      cardEl.classList.remove("dragging");
+      animating = false;
+    }));
+  }, 220);
+}
+
+cardEl.addEventListener("pointerdown", e => {
+  if (animating || !deck.length || (e.pointerType === "mouse" && e.button !== 0)) return;
+  dragging = true; dragMoved = false; dragDX = 0;
+  startX = e.clientX; startY = e.clientY;
+  try { cardEl.setPointerCapture(e.pointerId); } catch (err) {}
+});
+cardEl.addEventListener("pointermove", e => {
+  if (!dragging) return;
+  const dx = e.clientX - startX, dy = e.clientY - startY;
+  if (!dragMoved) {
+    if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy)) return;
+    dragMoved = true;
+    cardEl.classList.add("dragging");
+  }
+  dragDX = dx;
+  setDragTransform(dx);
+});
+function endDrag() {
+  if (!dragging) return;
+  dragging = false;
+  cardEl.classList.remove("dragging");
+  if (!dragMoved) return;
+  suppressTap = true;
+  const threshold = Math.min(90, cardEl.offsetWidth / 4);
+  if (Math.abs(dragDX) > threshold) swipeOut(dragDX < 0 ? 1 : -1);
+  else clearDragTransform();
+}
+cardEl.addEventListener("pointerup", endDrag);
+cardEl.addEventListener("pointercancel", () => {
+  dragging = false; dragMoved = false;
+  cardEl.classList.remove("dragging");
+  clearDragTransform();
+});
+
+$("card").addEventListener("click", () => {
+  if (suppressTap) { suppressTap = false; return; }
+  flip();
+});
 $("flip").addEventListener("click", flip);
 $("prev").addEventListener("click", () => move(-1));
 $("next").addEventListener("click", () => move(1));
