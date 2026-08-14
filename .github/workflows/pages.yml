@@ -2,7 +2,7 @@ name: Deploy flashcards to GitHub Pages
 
 on:
   push:
-    branches: [claude/naturalization-flashcards-q2gk23]
+    branches: [main]
     paths: [docs/**, .github/workflows/pages.yml]
   workflow_dispatch:
 
