@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 @MainActor
 final class DeckViewModel: ObservableObject {
@@ -20,8 +21,8 @@ final class DeckViewModel: ObservableObject {
     private static let knownKey = "civics128.known"
     private static let flaggedKey = "civics128.flagged"
 
-    init(cards: [Card] = Deck.load()) {
-        allCards = cards
+    init(cards: [Card]? = nil) {
+        allCards = cards ?? Deck.load()
         order = Array(cards.indices)
         known = Set(UserDefaults.standard.array(forKey: Self.knownKey) as? [Int] ?? [])
         flagged = Set(UserDefaults.standard.array(forKey: Self.flaggedKey) as? [Int] ?? [])
