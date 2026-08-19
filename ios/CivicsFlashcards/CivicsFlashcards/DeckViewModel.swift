@@ -23,7 +23,7 @@ final class DeckViewModel: ObservableObject {
 
     init(cards: [Card]? = nil) {
         allCards = cards ?? Deck.load()
-        order = Array(cards.indices)
+        order = Array(allCards.indices)
         known = Set(UserDefaults.standard.array(forKey: Self.knownKey) as? [Int] ?? [])
         flagged = Set(UserDefaults.standard.array(forKey: Self.flaggedKey) as? [Int] ?? [])
         rebuild()
