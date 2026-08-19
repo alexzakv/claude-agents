@@ -11,13 +11,15 @@ struct AboutView: View {
                         .font(.callout)
                 }
 
-                Section("Verify at the source") {
+                Section {
                     Link(destination: AppConfig.officialPDF) {
                         Label("Official USCIS questions & answers (PDF)", systemImage: "doc.text")
                     }
                     Link(destination: AppConfig.testUpdates) {
                         Label("Current officials — uscis.gov/citizenship/testupdates", systemImage: "checkmark.seal")
                     }
+                } header: {
+                    Text("Verify at the source")
                 } footer: {
                     Text("Answers to questions 24, 30, 38, 39, 53, and 57 can change because of elections or appointments. Always verify them shortly before your interview.")
                 }
