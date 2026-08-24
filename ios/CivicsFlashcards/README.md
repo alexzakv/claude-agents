@@ -26,7 +26,7 @@ CivicsFlashcards/
 1. Open Xcode → **File → New → Project… → iOS → App**.
    - Product Name: `CivicsFlashcards`
    - Interface: **SwiftUI**, Language: **Swift**
-   - Organization Identifier: e.g. `com.alexzakv` (bundle id becomes `com.alexzakv.CivicsFlashcards`)
+   - Organization Identifier: e.g. `com.quietra` (shipped bundle id: `com.quietra.civics128`)
    - Uncheck tests if you like.
 2. In Finder, open this folder's `CivicsFlashcards/` subfolder. Delete Xcode's
    generated `ContentView.swift` and `CivicsFlashcardsApp.swift`, then drag **all
@@ -50,7 +50,7 @@ CivicsFlashcards/
 **TestFlight (recommended first step)**
 1. Product → **Archive** → *Distribute App* → **App Store Connect** → Upload.
 2. In [App Store Connect](https://appstoreconnect.apple.com): create the app
-   (name, bundle id), then under TestFlight invite testers by email or share a
+   (name, bundle id (`com.quietra.civics128`)), then under TestFlight invite testers by email or share a
    public TestFlight link. Internal testers need no review; external links get a
    light review (~1 day).
 
