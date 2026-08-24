@@ -41,6 +41,9 @@ CivicsFlashcards/
 4. Select your device or a simulator → **Run** (⌘R).
 5. Signing: project → target → *Signing & Capabilities* → pick your Apple
    developer team. Xcode handles the rest automatically.
+6. Reach: project → target → *General* → set **Minimum Deployments** to
+   **iOS 17.0** — Xcode defaults it to the newest iOS, which locks out most
+   real users. The code only needs iOS 17.
 
 ## Ship it
 

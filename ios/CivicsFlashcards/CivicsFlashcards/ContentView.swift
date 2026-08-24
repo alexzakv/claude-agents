@@ -15,7 +15,7 @@ struct ContentView: View {
                 controls
             }
             .padding()
-            .background(Color(.systemGroupedBackground))
+            .background(Theme.paper)
             .navigationTitle("Civics 128")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -53,9 +53,9 @@ struct ContentView: View {
                     .monospacedDigit()
             }
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Theme.inkSoft)
             ProgressView(value: Double(vm.knownCount), total: Double(max(vm.totalCount, 1)))
-                .tint(.green)
+                .tint(Theme.known)
         }
     }
 
@@ -119,7 +119,7 @@ struct ContentView: View {
             if !vm.deck.isEmpty {
                 Text("Card \(vm.position + 1) of \(vm.deck.count)")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkFaint)
                     .monospacedDigit()
             }
             HStack(spacing: 10) {
@@ -152,7 +152,7 @@ struct ContentView: View {
                     Label("I know this", systemImage: "checkmark")
                 }
                 .buttonStyle(.bordered)
-                .tint(vm.currentCard.map(vm.isKnown) == true ? .green : nil)
+                .tint(vm.currentCard.map(vm.isKnown) == true ? Theme.known : nil)
 
                 Button {
                     vm.toggleFlagged()
@@ -160,7 +160,7 @@ struct ContentView: View {
                     Label("Review again", systemImage: "flag")
                 }
                 .buttonStyle(.bordered)
-                .tint(vm.currentCard.map(vm.isFlagged) == true ? .red : nil)
+                .tint(vm.currentCard.map(vm.isFlagged) == true ? Theme.flag : nil)
             }
         }
         .disabled(vm.deck.isEmpty && vm.currentCard == nil)
