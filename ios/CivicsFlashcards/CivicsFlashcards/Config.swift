@@ -6,7 +6,7 @@ enum AppConfig {
     /// PayPal donation page. Set to nil to hide the donation link entirely —
     /// e.g. if App Review objects to an external tip link, shipping without
     /// it is this one edit.
-    static let donationURL: URL? = URL(string: "https://www.paypal.com/donate/?business=NK5GN9KXWGL2S&no_recurring=0&currency_code=USD")
+    static let donationURL: URL? = nil
 
     static let officialPDF = URL(string: "https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf")!
     static let testUpdates = URL(string: "https://www.uscis.gov/citizenship/testupdates")!
