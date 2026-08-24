@@ -19,9 +19,9 @@ struct AboutView: View {
                         Label("Current officials — uscis.gov/citizenship/testupdates", systemImage: "checkmark.seal")
                     }
                 } header: {
-                    Text("Verify at the source")
+                    Text("Data source")
                 } footer: {
-                    Text("Answers to questions 24, 30, 38, 39, 53, and 57 can change because of elections or appointments. Always verify them shortly before your interview.")
+                    Text("Every question and answer in this app is reproduced from the official USCIS document above. Answers to questions 24, 30, 38, 39, 53, and 57 can change because of elections or appointments — always verify them shortly before your interview.")
                 }
 
                 if let donation = AppConfig.donationURL {
@@ -35,12 +35,20 @@ struct AboutView: View {
                 }
 
                 Section {
-                    Text("This app is an independent study aid. It is not affiliated with, endorsed by, or connected to USCIS or any government agency. Question and answer text is reproduced from the official USCIS study materials, which are in the public domain.")
+                    Text("Civics 128 is an independent study aid provided for educational purposes only. It is not affiliated with, endorsed by, or connected to U.S. Citizenship and Immigration Services (USCIS) or any other government agency.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                    Text("This app does not provide legal or immigration advice. Question and answer text is reproduced from the official USCIS study materials, which are in the public domain, but no guarantee is made that it is accurate, complete, or current. Official answers can change at any time, and the official USCIS materials always take precedence. Always confirm with USCIS before your interview.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                    Text("The app is provided \u{201C}as is,\u{201D} without warranties of any kind. The developer is not responsible for test results, immigration outcomes, or any decisions made in reliance on this app.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                     Text("Your study progress is stored only on this device. The app collects no personal data.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
+                } header: {
+                    Text("Disclaimer")
                 }
             }
             .navigationTitle("About")
