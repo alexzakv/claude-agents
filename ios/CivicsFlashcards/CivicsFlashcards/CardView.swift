@@ -22,32 +22,32 @@ struct CardView: View {
         .accessibilityHint("Double-tap to flip the card")
     }
 
-    private var cardBackground: some View {
-        RoundedRectangle(cornerRadius: 16, style: .continuous)
-            .fill(Color(.secondarySystemGroupedBackground))
+    private func cardBackground(_ fill: Color) -> some View {
+        RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .fill(fill)
             .overlay(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .strokeBorder(Color.primary.opacity(0.08))
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .strokeBorder(Theme.line)
             )
-            .shadow(color: .black.opacity(0.12), radius: 14, y: 6)
+            .shadow(color: .black.opacity(0.10), radius: 12, y: 5)
     }
 
     private var header: some View {
         HStack(alignment: .firstTextBaseline) {
             Text("Nº \(card.id)")
                 .font(.footnote.weight(.bold))
-                .foregroundStyle(.tint)
+                .foregroundStyle(Theme.accent)
             Text(Deck.sectionNames[card.section])
                 .font(.caption2)
                 .textCase(.uppercase)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.inkFaint)
                 .lineLimit(2)
             Spacer(minLength: 8)
             if isKnown {
-                badge("Known", color: .green)
+                badge("Known", color: Theme.known)
             }
             if isFlagged {
-                badge("Review", color: .red)
+                badge("Review", color: Theme.flag)
             }
         }
     }
@@ -67,15 +67,16 @@ struct CardView: View {
             Spacer()
             Text(card.question)
                 .font(.system(.title2, design: .serif))
+                .foregroundStyle(Theme.ink)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer()
             Text("Tap to reveal the answer · swipe for the next card")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(Theme.inkFaint)
         }
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(cardBackground)
+        .background(cardBackground(Theme.card))
     }
 
     private var back: some View {
@@ -87,22 +88,23 @@ struct CardView: View {
                     Text(card.answers.count > 1 ? "Official answers" : "Official answer")
                         .font(.caption)
                         .textCase(.uppercase)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.inkFaint)
                     VStack(alignment: .leading, spacing: 6) {
                         ForEach(card.answers, id: \.self) { answer in
                             if answer.hasPrefix("[") {
                                 Text(answer)
                                     .font(.system(.footnote, design: .serif))
                                     .italic()
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Theme.inkSoft)
                             } else {
                                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                                     Circle()
-                                        .fill(Color.accentColor.opacity(0.55))
+                                        .fill(Theme.accent.opacity(0.55))
                                         .frame(width: 6, height: 6)
                                         .padding(.top, 6)
                                     Text(answer)
                                         .font(.system(.body, design: .serif))
+                                        .foregroundStyle(Theme.ink)
                                 }
                             }
                         }
@@ -111,13 +113,14 @@ struct CardView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Study note — not part of the official answer")
                                 .font(.caption2.weight(.semibold))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Theme.inkSoft)
                             Text(note)
                                 .font(.footnote)
+                                .foregroundStyle(Theme.inkSoft)
                         }
                         .padding(10)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
+                        .background(Theme.accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
                     }
                     Link(destination: card.sourceURL) {
                         Label(card.sourceLabel, systemImage: "checkmark.seal")
@@ -130,6 +133,6 @@ struct CardView: View {
         }
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(cardBackground)
+        .background(cardBackground(Theme.cardBack))
     }
 }
