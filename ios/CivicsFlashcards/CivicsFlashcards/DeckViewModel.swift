@@ -76,6 +76,13 @@ final class DeckViewModel: ObservableObject {
         if flaggedOnly { rebuild(keeping: card.id) }
     }
 
+    func jump(toId id: Int) {
+        if let idx = deck.firstIndex(where: { allCards[$0].id == id }) {
+            position = idx
+            isFlipped = false
+        }
+    }
+
     func shuffle() {
         order.shuffle()
         position = 0
