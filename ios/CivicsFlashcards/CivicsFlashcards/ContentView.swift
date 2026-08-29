@@ -34,6 +34,7 @@ struct ContentView: View {
             .sheet(isPresented: $showAbout) {
                 AboutView()
             }
+            .onAppear(perform: applyLaunchArguments)
             .confirmationDialog(
                 "Clear all known and review marks?",
                 isPresented: $showResetConfirm,
@@ -42,6 +43,16 @@ struct ContentView: View {
                 Button("Reset progress", role: .destructive) { vm.resetProgress() }
             }
         }
+    }
+
+    // Inert in normal use: lets automated screenshot runs open specific UI states.
+    private func applyLaunchArguments() {
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-uiCard"), args.indices.contains(i + 1), let id = Int(args[i + 1]) {
+            vm.jump(toId: id)
+        }
+        if args.contains("-uiFlipped") { vm.isFlipped = true }
+        if args.contains("-uiAbout") { showAbout = true }
     }
 
     private var progressHeader: some View {
