@@ -1,10 +1,10 @@
 Thank you for the review. Here is the requested information for Civics 128 (version 1.0, build 2).
 
 1. SCREEN RECORDING
-A screen recording captured on a physical iPhone 17 running iOS 26.5.2 is attached. It begins with launching the app from the home screen and shows the complete user flow: viewing a question card, tapping to reveal the official answers, swiping between cards, marking a card as known, filtering by section, opening the About screen, and tapping a source link (which opens the official USCIS website in Safari). The app has no account registration, login, or account deletion flows; no paid content, purchases, or subscriptions; no user-generated content; and it never requests access to sensitive data or device capabilities (no location, contacts, camera, microphone, photos, notifications, or App Tracking Transparency prompts).
+A screen recording captured on a physical iPhone 17 Pro running iOS 26.6 (build 23G71) is attached. It begins with launching the app from the home screen and shows the complete user flow: viewing a question card, tapping to reveal the official answers, swiping between cards, marking a card as known, filtering by section, opening the About screen, and tapping a source link (which opens the official USCIS website in Safari). The app has no account registration, login, or account deletion flows; no paid content, purchases, or subscriptions; no user-generated content; and it never requests access to sensitive data or device capabilities (no location, contacts, camera, microphone, photos, notifications, or App Tracking Transparency prompts).
 
 2. DEVICES AND OPERATING SYSTEMS TESTED
-- iPhone 17, iOS 26.5.2 (physical device)
+- iPhone 17 Pro, iOS 26.6 (physical device)
 - iPhone 17 Pro Max, iOS 26.2 (Simulator)
 - iPad Pro 13-inch (M5), iOS 26.2 (Simulator)
 Minimum supported version: iOS 17.0.
