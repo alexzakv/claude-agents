@@ -1,5 +1,5 @@
 import SwiftUI
-import Combine
+import Combine  // required: SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY
 
 @MainActor
 final class DeckViewModel: ObservableObject {
@@ -74,6 +74,12 @@ final class DeckViewModel: ObservableObject {
         }
         persist()
         if flaggedOnly { rebuild(keeping: card.id) }
+    }
+
+    func sectionCounts(_ section: Int) -> (known: Int, total: Int) {
+        let ids = allCards.filter { $0.section == section }.map(\.id)
+        let knownCount = ids.filter { known.contains($0) }.count
+        return (knownCount, ids.count)
     }
 
     func jump(toId id: Int) {

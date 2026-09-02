@@ -5,6 +5,7 @@ struct CardView: View {
     let isKnown: Bool
     let isFlagged: Bool
     @Binding var isFlipped: Bool
+    @State private var showSource = false
 
     var body: some View {
         ZStack {
@@ -17,6 +18,14 @@ struct CardView: View {
         .rotation3DEffect(.degrees(isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
         .animation(.spring(response: 0.45, dampingFraction: 0.85), value: isFlipped)
         .onTapGesture { isFlipped.toggle() }
+        .onAppear {
+            #if DEBUG
+            // Inert in normal use: lets automated screenshot runs open the source viewer.
+            if ProcessInfo.processInfo.arguments.contains("-uiSource"), isFlipped {
+                showSource = true
+            }
+            #endif
+        }
         .accessibilityElement(children: .contain)
         .accessibilityAddTraits(.isButton)
         .accessibilityHint("Double-tap to flip the card")
@@ -43,6 +52,9 @@ struct CardView: View {
                 .foregroundStyle(Theme.inkFaint)
                 .lineLimit(2)
             Spacer(minLength: 8)
+            if card.star {
+                badge("★ 65/20", color: Theme.flag)
+            }
             if isKnown {
                 badge("Known", color: Theme.known)
             }
@@ -122,11 +134,24 @@ struct CardView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Theme.accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
                     }
-                    Link(destination: card.sourceURL) {
-                        Label(card.sourceLabel, systemImage: "checkmark.seal")
-                            .font(.footnote.weight(.medium))
+                    VStack(alignment: .leading, spacing: 10) {
+                        if card.usesTestUpdates {
+                            Link(destination: AppConfig.testUpdates) {
+                                Label("Check current answer at uscis.gov", systemImage: "checkmark.seal")
+                                    .font(.footnote.weight(.medium))
+                            }
+                        }
+                        Button {
+                            showSource = true
+                        } label: {
+                            Label("Verify in the official USCIS PDF (page \(card.sourcePage + 1))", systemImage: "doc.text.magnifyingglass")
+                                .font(.footnote.weight(.medium))
+                        }
                     }
                     .padding(.top, 4)
+                    .sheet(isPresented: $showSource) {
+                        SourceViewer(page: card.sourcePage)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

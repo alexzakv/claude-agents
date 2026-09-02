@@ -9,7 +9,9 @@
    "Representative democracy"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 2,
@@ -19,7 +21,9 @@
    "(U.S.) Constitution"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 1
  },
  {
   "id": 3,
@@ -32,7 +36,9 @@
    "Protects the rights of the people"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 4,
@@ -46,7 +52,9 @@
    "(Example of) social contract"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 5,
@@ -57,7 +65,9 @@
    "The amendment process"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 6,
@@ -68,7 +78,9 @@
    "(The basic) rights of people living in the United States"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 7,
@@ -78,7 +90,9 @@
    "Twenty-seven (27)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 1
  },
  {
   "id": 8,
@@ -91,7 +105,9 @@
    "It identifies individual freedoms."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 1
  },
  {
   "id": 9,
@@ -101,7 +117,9 @@
    "Declaration of Independence"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 10,
@@ -116,7 +134,9 @@
    "Self-government"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 11,
@@ -126,7 +146,9 @@
    "Declaration of Independence"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 12,
@@ -137,7 +159,9 @@
    "Free market economy"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 2
  },
  {
   "id": 13,
@@ -150,7 +174,9 @@
    "No one is above the law."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 14,
@@ -167,7 +193,9 @@
    "Iroquois Great Law of Peace"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 15,
@@ -179,7 +207,9 @@
    "Separation of powers"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 2
  },
  {
   "id": 16,
@@ -187,10 +217,12 @@
   "question": "Name the three branches of government.",
   "answers": [
    "Legislative, executive, and judicial",
-   "Congress, president, the courts"
+   "Congress, president, and the courts"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 17,
@@ -200,7 +232,9 @@
    "Executive branch"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 18,
@@ -212,7 +246,9 @@
    "Legislative branch"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 19,
@@ -222,7 +258,9 @@
    "Senate and House (of Representatives)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 20,
@@ -234,7 +272,9 @@
    "Makes the federal budget"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 3
  },
  {
   "id": 21,
@@ -244,7 +284,9 @@
    "One hundred (100)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 22,
@@ -254,7 +296,9 @@
    "Six (6) years"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 23,
@@ -265,18 +309,21 @@
    "[District of Columbia residents and residents of U.S. territories should answer that D.C. (or the territory where the applicant lives) has no U.S. senators.]"
   ],
   "note": "New York: Chuck Schumer or Kirsten Gillibrand (as of early 2026). If you live in another state, the answer is different — look up your senators at senate.gov.",
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 24,
   "section": 1,
   "question": "How many voting members are in the House of Representatives?",
   "answers": [
-   "Four hundred thirty-five (435)",
-   "Visit uscis.gov/citizenship/testupdates for the number of voting members of the House of Representatives."
+   "Four hundred thirty-five (435)"
   ],
+  "usesTestUpdates": false,
   "note": null,
-  "usesTestUpdates": true
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 25,
@@ -286,7 +333,9 @@
    "Two (2) years"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 26,
@@ -296,7 +345,9 @@
    "To more closely follow public opinion"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 27,
@@ -306,7 +357,9 @@
    "Two (2)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 3
  },
  {
   "id": 28,
@@ -317,7 +370,9 @@
    "The Great Compromise (Connecticut Compromise)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 29,
@@ -325,10 +380,12 @@
   "question": "Name your U.S. representative.",
   "answers": [
    "Answers will vary.",
-   "[Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.]"
+   "[Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) representatives in Congress.]"
   ],
   "note": "New York: depends on your congressional district — find your representative at house.gov. The answer is different in other districts and states.",
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 30,
@@ -338,17 +395,22 @@
    "Visit uscis.gov/citizenship/testupdates for the name of the Speaker of the House of Representatives."
   ],
   "note": "Answer with the official serving at the time of your interview — Mike Johnson as of early 2026.",
-  "usesTestUpdates": true
+  "usesTestUpdates": true,
+  "star": true,
+  "sourcePage": 4
  },
  {
   "id": 31,
   "section": 1,
   "question": "Who does a U.S. senator represent?",
   "answers": [
-   "Citizens of their state"
+   "Citizens of their state",
+   "People of their state"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 32,
@@ -358,17 +420,24 @@
    "Citizens from their state"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 33,
   "section": 1,
   "question": "Who does a member of the House of Representatives represent?",
   "answers": [
-   "Citizens in their (congressional) district"
+   "Citizens in their (congressional) district",
+   "Citizens in their district",
+   "People from their (congressional) district",
+   "People in their district"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 34,
@@ -378,7 +447,9 @@
    "Citizens from their (congressional) district"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 35,
@@ -390,7 +461,9 @@
    "(Because) some states have more people"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 36,
@@ -400,7 +473,9 @@
    "Four (4) years"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 4
  },
  {
   "id": 37,
@@ -411,7 +486,9 @@
    "To keep the president from becoming too powerful"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 4
  },
  {
   "id": 38,
@@ -421,7 +498,9 @@
    "Visit uscis.gov/citizenship/testupdates for the name of the President of the United States."
   ],
   "note": "Answer with the official serving at the time of your interview — Donald Trump as of early 2026.",
-  "usesTestUpdates": true
+  "usesTestUpdates": true,
+  "star": true,
+  "sourcePage": 4
  },
  {
   "id": 39,
@@ -431,7 +510,9 @@
    "Visit uscis.gov/citizenship/testupdates for the name of the Vice President of the United States."
   ],
   "note": "Answer with the official serving at the time of your interview — JD Vance as of early 2026.",
-  "usesTestUpdates": true
+  "usesTestUpdates": true,
+  "star": true,
+  "sourcePage": 5
  },
  {
   "id": 40,
@@ -441,27 +522,38 @@
    "The Vice President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 41,
   "section": 1,
-  "question": "If both the president and the vice president can no longer serve, who becomes president?",
+  "question": "Name one power of the president.",
   "answers": [
-   "The Speaker of the House (of Representatives)"
+   "Signs bills into law",
+   "Vetoes bills",
+   "Enforces laws",
+   "Commander in Chief (of the military)",
+   "Chief diplomat",
+   "Appoints federal judges"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 42,
   "section": 1,
-  "question": "Who is the Commander in Chief of the U.S. military?",
+  "question": "Who is Commander in Chief of the U.S. military?",
   "answers": [
    "The President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 43,
@@ -471,7 +563,9 @@
    "The President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 44,
@@ -481,7 +575,9 @@
    "The President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 5
  },
  {
   "id": 45,
@@ -491,7 +587,9 @@
    "The President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 46,
@@ -503,7 +601,9 @@
    "Federal departments and agencies"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 47,
@@ -513,7 +613,9 @@
    "Advises the President (of the United States)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 5
  },
  {
   "id": 48,
@@ -523,7 +625,6 @@
    "Attorney General",
    "Secretary of Agriculture",
    "Secretary of Commerce",
-   "Secretary of Defense",
    "Secretary of Education",
    "Secretary of Energy",
    "Secretary of Health and Human Services",
@@ -535,10 +636,19 @@
    "Secretary of Transportation",
    "Secretary of the Treasury",
    "Secretary of Veterans Affairs",
-   "Vice President (of the United States)"
+   "Secretary of War (Defense)",
+   "Vice-President",
+   "Administrator of the Environmental Protection Agency",
+   "Administrator of the Small Business Administration",
+   "Director of the Central Intelligence Agency",
+   "Director of the Office of Management and Budget",
+   "Director of National Intelligence",
+   "United States Trade Representative"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 6
  },
  {
   "id": 49,
@@ -549,7 +659,9 @@
    "It provides a compromise between the popular election of the president and congressional selection."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 6
  },
  {
   "id": 50,
@@ -560,7 +672,9 @@
    "Federal Courts"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 6
  },
  {
   "id": 51,
@@ -573,7 +687,9 @@
    "Decides if a law goes against the (U.S.) Constitution"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 6
  },
  {
   "id": 52,
@@ -583,18 +699,21 @@
    "Supreme Court"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 6
  },
  {
   "id": 53,
   "section": 1,
   "question": "How many seats are on the Supreme Court?",
   "answers": [
-   "Nine (9)",
-   "Visit uscis.gov/citizenship/testupdates for the number of justices on the Supreme Court."
+   "Nine (9)"
   ],
+  "usesTestUpdates": false,
   "note": null,
-  "usesTestUpdates": true
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 54,
@@ -604,7 +723,9 @@
    "Five (5)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 55,
@@ -616,7 +737,9 @@
    "(Until) retirement"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 56,
@@ -627,7 +750,9 @@
    "To limit outside (political) influence"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 57,
@@ -637,7 +762,9 @@
    "Visit uscis.gov/citizenship/testupdates for the name of the Chief Justice of the United States."
   ],
   "note": "Answer with the official serving at the time of your interview — John Roberts (John G. Roberts, Jr.) as of early 2026.",
-  "usesTestUpdates": true
+  "usesTestUpdates": true,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 58,
@@ -652,7 +779,9 @@
    "Set foreign policy"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 59,
@@ -666,7 +795,9 @@
    "Approve zoning and land use"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 60,
@@ -676,7 +807,9 @@
    "(It states that the) powers not given to the federal government belong to the states or to the people."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 61,
@@ -684,10 +817,12 @@
   "question": "Who is the governor of your state now?",
   "answers": [
    "Answers will vary.",
-   "[District of Columbia residents should answer that D.C. does not have a Governor.]"
+   "[District of Columbia residents should answer that D.C. does not have a governor.]"
   ],
   "note": "New York: Kathy Hochul (as of early 2026). If you live in another state, name your own state’s governor.",
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 7
  },
  {
   "id": 62,
@@ -698,7 +833,9 @@
    "[District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]"
   ],
   "note": "New York: Albany. If you live in another state, name your own state’s capital.",
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 7
  },
  {
   "id": 63,
@@ -711,7 +848,9 @@
    "A male citizen of any race (can vote)."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 8
  },
  {
   "id": 64,
@@ -723,7 +862,9 @@
    "U.S. citizens"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 8
  },
  {
   "id": 65,
@@ -738,7 +879,9 @@
    "The right to bear arms"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 8
  },
  {
   "id": 66,
@@ -749,7 +892,9 @@
    "The flag"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 8
  },
  {
   "id": 67,
@@ -764,19 +909,23 @@
    "Be loyal to the United States"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 8
  },
  {
   "id": 68,
   "section": 2,
   "question": "How can people become United States citizens?",
   "answers": [
+   "Be born in the United States, under the conditions set by the 14th Amendment",
    "Naturalize",
-   "Derive citizenship",
-   "Be born in the United States"
+   "Derive citizenship (under conditions set by Congress)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 8
  },
  {
   "id": 69,
@@ -795,7 +944,9 @@
    "Write to a newspaper"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 9
  },
  {
   "id": 70,
@@ -810,7 +961,9 @@
    "Work for local, state, or federal government"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 9
  },
  {
   "id": 71,
@@ -823,7 +976,9 @@
    "Civic duty"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 9
  },
  {
   "id": 72,
@@ -835,7 +990,9 @@
    "Makes the draft fair, if needed"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 9
  },
  {
   "id": 73,
@@ -849,7 +1006,9 @@
    "Escape persecution"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 10
  },
  {
   "id": 74,
@@ -860,7 +1019,9 @@
    "Native Americans"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 10
  },
  {
   "id": 75,
@@ -871,7 +1032,9 @@
    "People from Africa"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 10
  },
  {
   "id": 76,
@@ -883,7 +1046,9 @@
    "War for (American) Independence"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 10
  },
  {
   "id": 77,
@@ -902,7 +1067,9 @@
    "Intolerable (Coercive) Acts"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 10
  },
  {
   "id": 78,
@@ -912,7 +1079,9 @@
    "(Thomas) Jefferson"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 10
  },
  {
   "id": 79,
@@ -922,7 +1091,9 @@
    "July 4, 1776"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 10
  },
  {
   "id": 80,
@@ -931,13 +1102,15 @@
   "answers": [
    "(Battle of) Bunker Hill",
    "Declaration of Independence",
-   "Washington Crossing the Delaware (Battles of Trenton and Princeton)",
+   "Washington Crossing the Delaware (Battle of Trenton)",
    "(Battle of) Saratoga",
    "Valley Forge (Encampment)",
    "(Battle of) Yorktown (British surrender at Yorktown)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 81,
@@ -959,7 +1132,9 @@
    "Georgia"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 82,
@@ -969,20 +1144,24 @@
    "(U.S.) Constitution"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 83,
   "section": 3,
   "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
   "answers": [
-   "(Alexander) Hamilton",
    "(James) Madison",
+   "(Alexander) Hamilton",
    "(John) Jay",
    "Publius"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 84,
@@ -993,7 +1172,9 @@
    "They supported passing the (U.S.) Constitution."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 85,
@@ -1007,7 +1188,9 @@
    "U.S. diplomat"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 11
  },
  {
   "id": 86,
@@ -1020,7 +1203,9 @@
    "President of the Constitutional Convention"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 12
  },
  {
   "id": 87,
@@ -1035,7 +1220,9 @@
    "Writer of the Virginia Statute on Religious Freedom"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 88,
@@ -1048,7 +1235,9 @@
    "One of the writers of the Federalist Papers"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 89,
@@ -1062,7 +1251,9 @@
    "Member of the Continental Congress"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 90,
@@ -1073,7 +1264,9 @@
    "Louisiana"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 91,
@@ -1086,7 +1279,9 @@
    "Spanish-American War"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 92,
@@ -1096,7 +1291,9 @@
    "The Civil War"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 12
  },
  {
   "id": 93,
@@ -1109,11 +1306,13 @@
    "(Battle of) Gettysburg",
    "Sherman’s March",
    "(Surrender at) Appomattox",
-   "(Battle of) Antietam (Sharpsburg)",
+   "(Battle of) Antietam/Sharpsburg",
    "Lincoln was assassinated."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 94,
@@ -1127,7 +1326,9 @@
    "Delivered the Gettysburg Address"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 13
  },
  {
   "id": 95,
@@ -1140,7 +1341,9 @@
    "Freed slaves in most Southern states"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 96,
@@ -1150,17 +1353,21 @@
    "The Civil War"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 97,
   "section": 4,
-  "question": "What amendment gives citizenship to all persons born in the United States?",
+  "question": "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?",
   "answers": [
    "14th Amendment"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 98,
@@ -1173,7 +1380,9 @@
    "1870"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 99,
@@ -1188,7 +1397,9 @@
    "Lucy Stone"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 13
  },
  {
   "id": 100,
@@ -1202,7 +1413,9 @@
    "(Persian) Gulf War"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 101,
@@ -1214,7 +1427,9 @@
    "To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 102,
@@ -1226,7 +1441,9 @@
    "(With the) 19th Amendment"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 103,
@@ -1236,7 +1453,9 @@
    "Longest economic recession in modern history"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 104,
@@ -1247,7 +1466,9 @@
    "Stock market crash of 1929"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 105,
@@ -1257,7 +1478,9 @@
    "(Franklin) Roosevelt"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 106,
@@ -1270,7 +1493,9 @@
    "To oppose the Axis Powers (Germany, Italy, and Japan)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 107,
@@ -1283,7 +1508,9 @@
    "Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 14
  },
  {
   "id": 108,
@@ -1295,7 +1522,9 @@
    "Russia"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 109,
@@ -1306,7 +1535,9 @@
    "Nuclear war"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 110,
@@ -1316,7 +1547,9 @@
    "To stop the spread of communism"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 111,
@@ -1326,7 +1559,9 @@
    "To stop the spread of communism"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 112,
@@ -1336,7 +1571,9 @@
    "Fought to end racial discrimination"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 113,
@@ -1348,7 +1585,9 @@
    "Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 15
  },
  {
   "id": 114,
@@ -1358,12 +1597,14 @@
    "To force the Iraqi military from Kuwait"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 115,
   "section": 5,
-  "question": "What major event happened on September 11, 2001, in the United States?",
+  "question": "What major event happened on September 11, 2001 in the United States?",
   "answers": [
    "Terrorists attacked the United States",
    "Terrorists took over two planes and crashed them into the World Trade Center in New York City",
@@ -1371,7 +1612,9 @@
    "Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 15
  },
  {
   "id": 116,
@@ -1383,7 +1626,9 @@
    "War in Iraq"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 15
  },
  {
   "id": 117,
@@ -1415,10 +1660,12 @@
    "Sioux",
    "Teton",
    "Tuscarora",
-   "[For a complete list of tribes, please visit bia.gov.]"
+   "For a complete list of tribes, please visit bia.gov."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 16
  },
  {
   "id": 118,
@@ -1434,7 +1681,9 @@
    "Integrated circuit (IC)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 16
  },
  {
   "id": 119,
@@ -1444,7 +1693,9 @@
    "Washington, D.C."
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 17
  },
  {
   "id": 120,
@@ -1456,7 +1707,9 @@
    "[Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 17
  },
  {
   "id": 121,
@@ -1467,7 +1720,9 @@
    "(Because the stripes) represent the original colonies"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 17
  },
  {
   "id": 122,
@@ -1479,7 +1734,9 @@
    "(Because there are) 50 states"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 17
  },
  {
   "id": 123,
@@ -1489,7 +1746,9 @@
    "The Star-Spangled Banner"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 17
  },
  {
   "id": 124,
@@ -1500,7 +1759,9 @@
    "We all become one"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 17
  },
  {
   "id": 125,
@@ -1511,7 +1772,9 @@
    "The country’s birthday"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 18
  },
  {
   "id": 126,
@@ -1531,7 +1794,9 @@
    "Christmas Day"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": true,
+  "sourcePage": 18
  },
  {
   "id": 127,
@@ -1541,7 +1806,9 @@
    "A holiday to honor soldiers who died in military service"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 18
  },
  {
   "id": 128,
@@ -1552,6 +1819,8 @@
    "A holiday to honor people who have served (in the U.S. military)"
   ],
   "note": null,
-  "usesTestUpdates": false
+  "usesTestUpdates": false,
+  "star": false,
+  "sourcePage": 18
  }
 ]

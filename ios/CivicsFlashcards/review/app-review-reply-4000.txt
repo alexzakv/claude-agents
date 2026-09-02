@@ -1,0 +1,17 @@
+Thank you for the review. Requested information for Civics 128 (1.0, build 2):
+
+1. SCREEN RECORDING: Attached, captured on a physical iPhone 17 Pro running iOS 26.6. It starts with launching the app from the home screen and shows the full user flow: question card, tapping to reveal the official answers, swiping between cards, marking a card as known, filtering by section, the About screen, and tapping a source link (opens the official USCIS site in Safari). The app has no registration, login or account deletion; no paid content, purchases or subscriptions; no user-generated content; and it never requests sensitive data or device capabilities (no location, contacts, camera, microphone, photos, notifications or App Tracking Transparency prompts).
+
+2. DEVICES TESTED: iPhone 17 Pro, iOS 26.6 (physical device); iPhone 17 Pro Max, iOS 26.2 (Simulator); iPad Pro 13-inch (M5), iOS 26.2 (Simulator). Minimum iOS 17.0.
+
+3. FUNCTIONS AND AUDIENCE: Civics 128 is a free, offline flashcard study aid for the 2025 U.S. naturalization civics test. It contains all 128 official questions and acceptable answers, reproduced verbatim from the USCIS publication "128 Civics Questions and Answers (2025 version)". Users flip cards to reveal answers, swipe between cards, mark cards known or flag them for review (progress stored only on the device), filter by section, shuffle, and verify any answer at the official source with one tap. Audience: adults preparing for the naturalization interview (lawful permanent residents filing Form N-400 on or after October 20, 2025), plus tutors, family members and citizenship-class instructors. Value: the official material is a static PDF; the app turns it into a structured study tool with review tracking and offline access while keeping the wording exactly as published and linking to the official source so users can confirm answers that change over time (e.g. names of current officials).
+
+4. SETUP: None required. Launch the app; the first card appears immediately. No login, credentials, sample files or configuration. Tap a card to flip; swipe or use Back/Next to change cards; the filter button (top-left) chooses a section, hides known cards or shuffles; the info button (top-right) opens the About screen with the data-source links and disclaimer.
+
+5. EXTERNAL SERVICES: None. No data providers, authentication, payment processors, analytics, advertising, AI services or third-party SDKs. All content is bundled; the app makes no network requests of its own. The only network activity is when the user taps an outbound link, which opens uscis.gov in the system browser.
+
+6. REGIONAL DIFFERENCES: None. The app functions identically in all regions with identical content and features (the subject matter is the U.S. naturalization test, in U.S. English).
+
+7. THIRD-PARTY MATERIAL: The questions and answers are published by USCIS, an agency of the U.S. federal government, at https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf. As a work of the United States Government, this material is in the public domain (17 U.S.C. section 105) and USCIS publishes it expressly for applicants to study from; no license is required. The app uses no USCIS or government logos or branding, and its About screen states it is not affiliated with, endorsed by or connected to USCIS or any government agency. The app is not in a regulated industry and provides no legal or immigration advice.
+
+Please let us know if anything further would help. Thank you.
