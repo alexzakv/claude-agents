@@ -1,58 +1,44 @@
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject private var vm = DeckViewModel()
+struct DeckView: View {
+    @EnvironmentObject private var vm: DeckViewModel
     @State private var dragOffset: CGFloat = 0
     @State private var isAnimatingSwipe = false
-    @State private var showAbout = false
     @State private var showResetConfirm = false
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
-                progressHeader
-                cardArea
-                controls
-            }
-            .padding()
-            .background(Theme.paper)
-            .navigationTitle("Civics 128")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    filterMenu
+        VStack(spacing: 16) {
+            progressHeader
+            cardArea
+            controls
+        }
+        .padding()
+        .background(Theme.paper)
+        .navigationTitle(deckTitle)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    vm.shuffle()
+                } label: {
+                    Image(systemName: "shuffle")
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showAbout = true
-                    } label: {
-                        Image(systemName: "info.circle")
-                    }
-                    .accessibilityLabel("About and sources")
-                }
+                .accessibilityLabel("Shuffle")
+                filterMenu
             }
-            .sheet(isPresented: $showAbout) {
-                AboutView()
-            }
-            .onAppear(perform: applyLaunchArguments)
-            .confirmationDialog(
-                "Clear all known and review marks?",
-                isPresented: $showResetConfirm,
-                titleVisibility: .visible
-            ) {
-                Button("Reset progress", role: .destructive) { vm.resetProgress() }
-            }
+        }
+        .confirmationDialog(
+            "Clear all known and review marks?",
+            isPresented: $showResetConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("Reset progress", role: .destructive) { vm.resetProgress() }
         }
     }
 
-    // Inert in normal use: lets automated screenshot runs open specific UI states.
-    private func applyLaunchArguments() {
-        let args = ProcessInfo.processInfo.arguments
-        if let i = args.firstIndex(of: "-uiCard"), args.indices.contains(i + 1), let id = Int(args[i + 1]) {
-            vm.jump(toId: id)
-        }
-        if args.contains("-uiFlipped") { vm.isFlipped = true }
-        if args.contains("-uiAbout") { showAbout = true }
+    private var deckTitle: String {
+        guard let section = vm.sectionFilter else { return "All Questions" }
+        return Deck.sectionNames[section].components(separatedBy: " · ").last ?? "Civics 128"
     }
 
     private var progressHeader: some View {
@@ -85,7 +71,7 @@ struct ContentView: View {
             .gesture(swipeGesture)
             .frame(maxHeight: .infinity)
         } else {
-            ContentUnavailableCompat()
+            ContentUnavailableCompat(dataMissing: vm.totalCount == 0)
                 .frame(maxHeight: .infinity)
         }
     }
@@ -137,7 +123,7 @@ struct ContentView: View {
                 Button {
                     animateSwipe(direction: 1) { vm.previous() }
                 } label: {
-                    Label("Back", systemImage: "chevron.left")
+                    Label("Previous", systemImage: "chevron.left")
                 }
                 .buttonStyle(.bordered)
 
@@ -174,7 +160,7 @@ struct ContentView: View {
                 .tint(vm.currentCard.map(vm.isFlagged) == true ? Theme.flag : nil)
             }
         }
-        .disabled(vm.deck.isEmpty && vm.currentCard == nil)
+        .disabled(vm.deck.isEmpty)
     }
 
     private var filterMenu: some View {
@@ -205,16 +191,18 @@ struct ContentView: View {
     }
 }
 
-/// Empty-state view (avoids the iOS 17-only ContentUnavailableView).
+/// Custom empty state styled to match the app theme.
 private struct ContentUnavailableCompat: View {
+    var dataMissing = false
+
     var body: some View {
         VStack(spacing: 10) {
-            Image(systemName: "rectangle.on.rectangle.slash")
+            Image(systemName: dataMissing ? "exclamationmark.triangle" : "rectangle.on.rectangle.slash")
                 .font(.largeTitle)
                 .foregroundStyle(.secondary)
-            Text("No cards match these filters")
+            Text(dataMissing ? "The question data could not be loaded" : "No cards match these filters")
                 .font(.headline)
-            Text("Change the section filter or turn off “Hide known” / “Flagged only”.")
+            Text(dataMissing ? "Please delete and reinstall the app." : "Change the section filter or turn off “Hide known” / “Flagged only”.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -224,5 +212,6 @@ private struct ContentUnavailableCompat: View {
 }
 
 #Preview {
-    ContentView()
+    NavigationStack { DeckView() }
+        .environmentObject(DeckViewModel())
 }

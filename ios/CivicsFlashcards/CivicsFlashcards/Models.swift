@@ -7,22 +7,16 @@ struct Card: Identifiable, Codable, Equatable {
     let answers: [String]
     let note: String?
     let usesTestUpdates: Bool
+    let star: Bool
+    let sourcePage: Int
 
-    var sourceURL: URL {
-        if usesTestUpdates {
-            return URL(string: "https://www.uscis.gov/citizenship/testupdates")!
-        }
-        return URL(string: "https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf")!
-    }
 
-    var sourceLabel: String {
-        usesTestUpdates
-            ? "Check current answer at uscis.gov"
-            : "Verify in the official USCIS PDF"
-    }
 }
 
 enum Deck {
+    /// The official USCIS document, bundled for offline verification.
+    static let bundledPDF = Bundle.main.url(forResource: "civics-2025", withExtension: "pdf")
+
     static let sectionNames = [
         "American Government · Principles of American Government",
         "American Government · System of Government",
@@ -43,6 +37,8 @@ enum Deck {
             assertionFailure("civics128.json missing from bundle or malformed")
             return []
         }
-        return cards.sorted { $0.id < $1.id }
+        return cards
+            .filter { sectionNames.indices.contains($0.section) }
+            .sorted { $0.id < $1.id }
     }
 }

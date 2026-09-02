@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AboutView: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("civics128.appearance") private var appearance = AppearanceSetting.system.rawValue
 
     var body: some View {
         NavigationStack {
@@ -9,6 +10,19 @@ struct AboutView: View {
                 Section {
                     Text("Flashcards for the 2025 naturalization civics test — all 128 official questions and answers for N-400 applications filed on or after October 20, 2025. At the interview, a USCIS officer asks 20 of these questions; answering 12 correctly passes the test.")
                         .font(.callout)
+                }
+
+                Section {
+                    Picker("Theme", selection: $appearance) {
+                        ForEach(AppearanceSetting.allCases) { setting in
+                            Text(setting.label).tag(setting.rawValue)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                } header: {
+                    Text("Appearance")
+                } footer: {
+                    Text("System follows your device's light/dark setting.")
                 }
 
                 Section {
@@ -21,7 +35,7 @@ struct AboutView: View {
                 } header: {
                     Text("Data source")
                 } footer: {
-                    Text("Every question and answer in this app is reproduced from the official USCIS document above. Answers to questions 24, 30, 38, 39, 53, and 57 can change because of elections or appointments — always verify them shortly before your interview.")
+                    Text("Every question and answer in this app is reproduced from the official USCIS document above, which is also bundled in the app for offline verification. Answers to questions 30, 38, 39, and 57 change with elections or appointments — always verify them shortly before your interview. Questions marked ★ 65/20 are the 20 questions that applicants aged 65 or older with 20 or more years as permanent residents may study exclusively.")
                 }
 
                 if let donation = AppConfig.donationURL {

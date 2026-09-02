@@ -27,6 +27,28 @@ enum Theme {
     static let accent   = Color(light: "2e4a76", dark: "7d9cc9")
     static let known    = Color(light: "3d7052", dark: "7cbb96")
     static let flag     = Color(light: "9e3f38", dark: "d98a83")
+    /// Text/icon color on accent-filled surfaces.
+    static let accentInkColor = Color(light: "ffffff", dark: "12161f")
+}
+
+/// User-selectable appearance override (About screen).
+enum AppearanceSetting: String, CaseIterable, Identifiable {
+    case system, light, dark
+    var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .system: return "System"
+        case .light: return "Light"
+        case .dark: return "Dark"
+        }
+    }
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: return nil
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
 }
 
 extension Color {
