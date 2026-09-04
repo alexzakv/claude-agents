@@ -8,7 +8,7 @@ struct AboutView: View {
         NavigationStack {
             List {
                 Section {
-                    Text("Flashcards for the 2025 naturalization civics test — all 128 official questions and answers for N-400 applications filed on or after October 20, 2025. At the interview, a USCIS officer asks 20 of these questions; answering 12 correctly passes the test.")
+                    Text("Flashcards for the U.S. naturalization civics test used in 2026 — all 128 official questions and answers. This is the test for N-400 applications filed on or after October 20, 2025, published by USCIS as the 2025 version. At the interview, a USCIS officer asks 20 of these questions; answering 12 correctly passes the test.")
                         .font(.callout)
                 }
 

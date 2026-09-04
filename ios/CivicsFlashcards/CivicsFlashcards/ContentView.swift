@@ -13,6 +13,8 @@ struct DeckView: View {
             controls
         }
         .padding()
+        .frame(maxWidth: 640)
+        .frame(maxWidth: .infinity)
         .background(Theme.paper)
         .navigationTitle(deckTitle)
         .navigationBarTitleDisplayMode(.inline)
@@ -68,7 +70,8 @@ struct DeckView: View {
             .offset(x: dragOffset)
             .rotationEffect(.degrees(Double(dragOffset) / 40))
             .opacity(1 - min(abs(dragOffset) / 600, 0.6))
-            .gesture(swipeGesture)
+            .simultaneousGesture(swipeGesture)
+            .frame(maxHeight: 620)
             .frame(maxHeight: .infinity)
         } else {
             ContentUnavailableCompat(dataMissing: vm.totalCount == 0)

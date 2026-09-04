@@ -23,6 +23,8 @@ struct HomeView: View {
                     }
                 }
                 .padding()
+                .frame(maxWidth: 640)
+                .frame(maxWidth: .infinity)
             }
             .background(Theme.paper)
             .navigationTitle("")
@@ -53,7 +55,7 @@ struct HomeView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Naturalization Test · 2025")
+            Text("U.S. Citizenship Test · 2026")
                 .font(.caption)
                 .textCase(.uppercase)
                 .kerning(1.2)

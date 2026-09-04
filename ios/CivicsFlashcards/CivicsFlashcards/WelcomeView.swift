@@ -42,6 +42,8 @@ struct WelcomeView: View {
                             text: "Works anywhere with no account and no tracking. Your progress stays on this device.")
                 }
                 .padding(.horizontal, 24)
+                .frame(maxWidth: 600)
+                .frame(maxWidth: .infinity)
             }
             VStack(spacing: 10) {
                 Button(action: onStart) {
@@ -60,6 +62,7 @@ struct WelcomeView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 16)
             .padding(.top, 8)
+            .frame(maxWidth: 600)
         }
         .background(Theme.paper)
     }
