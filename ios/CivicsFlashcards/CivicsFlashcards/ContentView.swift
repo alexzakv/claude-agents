@@ -9,6 +9,7 @@ struct DeckView: View {
     var body: some View {
         VStack(spacing: 16) {
             progressHeader
+            filterChips
             cardArea
             controls
         }
@@ -55,6 +56,14 @@ struct DeckView: View {
             .foregroundStyle(Theme.inkSoft)
             ProgressView(value: Double(vm.knownCount), total: Double(max(vm.totalCount, 1)))
                 .tint(Theme.known)
+        }
+    }
+
+    private var filterChips: some View {
+        HStack(spacing: 8) {
+            FilterChip(title: "Hide known", isOn: $vm.hideKnown, tint: Theme.known)
+            FilterChip(title: "Flagged only", isOn: $vm.flaggedOnly, tint: Theme.flag)
+            Spacer(minLength: 0)
         }
     }
 
@@ -174,8 +183,6 @@ struct DeckView: View {
                     Text(Deck.sectionNames[index]).tag(Int?.some(index))
                 }
             }
-            Toggle("Hide known", isOn: $vm.hideKnown)
-            Toggle("Flagged only", isOn: $vm.flaggedOnly)
             Divider()
             Button {
                 vm.shuffle()
@@ -205,12 +212,42 @@ private struct ContentUnavailableCompat: View {
                 .foregroundStyle(.secondary)
             Text(dataMissing ? "The question data could not be loaded" : "No cards match these filters")
                 .font(.headline)
-            Text(dataMissing ? "Please delete and reinstall the app." : "Change the section filter or turn off “Hide known” / “Flagged only”.")
+            Text(dataMissing ? "Please delete and reinstall the app." : "Turn off “Hide known” / “Flagged only” above, or change the section filter.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
         }
         .padding()
+    }
+}
+
+/// Always-visible filter toggle, styled as a pill. Used for "Hide known" and
+/// "Flagged only" so their state is legible without opening a menu.
+private struct FilterChip: View {
+    let title: String
+    @Binding var isOn: Bool
+    var tint: Color
+
+    var body: some View {
+        Button {
+            isOn.toggle()
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: isOn ? "checkmark.circle.fill" : "circle")
+                    .font(.caption)
+                    .accessibilityHidden(true)  // state is conveyed via accessibilityValue below
+                Text(title)
+                    .font(.caption.weight(.medium))
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(isOn ? tint.opacity(0.15) : Theme.card, in: Capsule())
+            .overlay(Capsule().strokeBorder(isOn ? tint : Theme.line))
+            .foregroundStyle(isOn ? tint : Theme.inkSoft)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(title)
+        .accessibilityValue(isOn ? "On" : "Off")
     }
 }
 

@@ -59,11 +59,18 @@ final class CivicsFlashcardsUITests: XCTestCase {
         XCTAssertTrue(shuffle.waitForExistence(timeout: 3))
         shuffle.tap(); pause(1.6)
 
-        // Filter menu.
-        app.buttons["Filters and options"].firstMatch.tap(); pause(1.8)
-        let hideKnown = any(app, label: "Hide known")
+        // Filter chips, now always visible above the card.
+        let hideKnown = app.buttons["Hide known"].firstMatch
         if hideKnown.waitForExistence(timeout: 3) { hideKnown.tap() }
         pause(1.4)
+        if hideKnown.exists { hideKnown.tap() }  // toggle back off, so the deck isn't left filtered
+        pause(1.0)
+
+        // Filter menu: section picker, shuffle, reset. Dismiss by tapping
+        // outside it rather than the nav bar, which is unreliable while a
+        // Menu popover is showing.
+        app.buttons["Filters and options"].firstMatch.tap(); pause(1.8)
+        card.tap(); pause(0.8)
 
         // Back to home, then About: sources, disclaimer, official link.
         app.navigationBars.buttons.element(boundBy: 0).tap(); pause(1.5)
